@@ -1,5 +1,6 @@
 package com.doublehammerstudio.haynineyan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -57,21 +58,29 @@ public class TopicChooseActivity extends AppCompatActivity {
 
 
             imageSlider.setItemClickListener(i -> {
+                Intent intent = new Intent(TopicChooseActivity.this, FiveETabsActivity.class);
+
                 switch (i) {
                     case 0:
-                        Toast.makeText(this, "Non-Mendelian Inheritance clicked", Toast.LENGTH_SHORT).show();
+                        // send string data "Non Mendelian"
+                        intent.putExtra("topic", "Non Mendelian");
                         break;
                     case 1:
-                        Toast.makeText(this, "Sex-Related Inheritance clicked", Toast.LENGTH_SHORT).show();
+                        // send string data "Sex Related Inheritance"
+                        intent.putExtra("topic", "Sex Related Inheritance");
                         break;
                     case 2:
-                        Toast.makeText(this, "DNA Structure clicked", Toast.LENGTH_SHORT).show();
+                        // send string data "DNA"
+                        intent.putExtra("topic", "DNA");
                         break;
                     default:
                         Toast.makeText(this, "Unknown item clicked", Toast.LENGTH_SHORT).show();
-                        break;
+                        return; // Exit early if unknown
                 }
+
+                startActivity(intent);
             });
+
             return insets;
         });
     }

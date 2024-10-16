@@ -26,13 +26,16 @@
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_margin="20dp"
+        android:layout_height="480dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:iss_corner_radius="20"
         app:iss_error_image="@drawable/hay9yan_png"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/splashImage"
-        tools:layout_editor_absoluteX="20dp">
+        >
 
     </com.denzcoskun.imageslider.ImageSlider>
 

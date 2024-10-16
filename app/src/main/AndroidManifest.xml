@@ -13,12 +13,29 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".FiveEActivities.EvaluateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FiveEActivities.ElaborateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FiveEActivities.ExplainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FiveEActivities.ExploreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FiveEActivities.EngageActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity
+            android:name=".FiveETabsActivity"
+            android:exported="false" />
+        <activity
             android:name=".TopicChooseActivity"
             android:exported="false" />
         <activity
             android:name=".AboutUsActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -31,7 +48,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -1,3 +1,68 @@
 <resources>
     <string name="app_name">HAYNINEYAN</string>
+    <string name="non_mendelian_engage_short_info"><b>Short info:</b> \n\nBlending is a concept in genetics that refers to the idea that offspring exhibit a phenotype that is a mix of the traits of their parents, rather than displaying distinct traits from each parent. This concept is closely related to incomplete dominance, a type of inheritance where neither allele is dominant over the other, resulting in a phenotype that blends the two traits.
+
+        /n
+        /n
+        /n
+
+        Sources of pictures:
+        /n
+        /n
+        https://www.horsebreedspictures.com/horse-colors/roan-horse /n
+        https://www.thehappychickencoop.com/black-and-white-chickens/ /n
+        https://mrmaple.com/products/buy-camellia-japonica-governor-mouton-double-pink-red-and-white-variegated-bloom-hardy-camellia /n
+        Equal - Free shapes and symbols icons (flaticon.com) /n
+
+
+
+    </string>
+
+    <string name="sex_related_inheritance_info"><b>Short info:</b> \n\n
+        Chromosomes are thread-like structures found in the nucleus of cells that carry genetic information in the form of DNA. Humans typically have 46 chromosomes, arranged in 23 pairs, with one chromosome in each pair inherited from each parent. They contain genes, which are sequences of DNA that code for proteins and determine an organisms traits and functions.
+
+        /n
+        /n
+        /n
+
+        Sources of pictures:
+        /n
+        /n
+        https://www.genome.gov/genetics-glossary/Y-Chromosome  /n
+        https://www.sciencephoto.com/media/642251/view/chromosomes-illustration /n
+        https://pixels.com/featured/human-male-chromosomes-bo-veislandscience-photo-library.html /n
+        https://www.elitour.org/news/sex-chromosome-abnormalities/ /n
+
+
+
+
+    </string>
+
+    <string name="dna_info"><b>Short info:</b> \n\n
+        DNA, or deoxyribonucleic acid, is the molecule that carries the genetic instructions essential for the growth, development, functioning, and reproduction of all known living organisms and many viruses. DNA is found mainly in the cell nucleus and is responsible for passing genetic traits from one generation to the next.
+        /n
+        /n
+        /n
+
+        Sources of pictures:
+        /n
+        /n
+        https://www.expii.com/t/chromosomes-role-in-inheritance-overview-importance-10174
+        /n
+
+        https://www.istockphoto.com/photo/dna-molecules-gm980196834-266314778
+        /n
+
+        https://ph.pinterest.com/pin/635922409869684565/
+        /n
+
+        https://my.clevelandclinic.org/health/body/23064-dna-genes-chromosomes
+        /n
+
+
+
+
+
+
+    </string>
 </resources>
