@@ -1,6 +1,18 @@
 package com.doublehammerstudio.haynineyan.FiveEActivities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.MediaController;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +23,11 @@ import androidx.core.view.WindowInsetsCompat;
 import com.doublehammerstudio.haynineyan.R;
 
 public class ExploreActivity extends AppCompatActivity {
+    private ImageView headerImage;
+    private LinearLayout mainLayout;
 
+    private VideoView videoView1;
+    private TextView videoTitle1, videoGuideQuestion1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +36,57 @@ public class ExploreActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
+            headerImage = findViewById(R.id.headerImage);
+            mainLayout = findViewById(R.id.mainLayout);
+
+
+            videoTitle1 = findViewById(R.id.videoTitle1);
+            videoGuideQuestion1 = findViewById(R.id.videoGuideQuestion1);
+            videoView1 = findViewById(R.id.videoView1);
+            MediaController mediaController = new MediaController(this);
+            mediaController.setAnchorView(videoTitle1);
+            videoView1.setMediaController(mediaController);
+
+
+            Intent intent = getIntent();
+            String value = intent.getStringExtra("topic");
+
+            if (value != null) {
+                switch (value) {
+                    case "Non Mendelian":
+                        videoTitle1.setText("Incomplete Dominance and Codominance");
+                        videoGuideQuestion1.setText(R.string.videoguidequestion1);
+
+                        Uri nonMendelianVideoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.non_mendelian_incomplete_dominance_and_codominance_video_1);
+                        videoView1.setVideoURI(nonMendelianVideoUri);
+                        break;
+
+                    case "Sex Related Inheritance":
+
+                        break;
+                    case "DNA":
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            new Handler().postDelayed(() -> {
+
+                Animation fallAnimation1 = AnimationUtils.loadAnimation(this, R.anim.fall_from_top);
+
+                headerImage.setVisibility(View.VISIBLE);
+                headerImage.startAnimation(fallAnimation1);
+            }, 200);
+            new Handler().postDelayed(() -> {
+
+                Animation fallAnimation2 = AnimationUtils.loadAnimation(this, R.anim.fall_from_top);
+                mainLayout.setVisibility(View.VISIBLE);
+                mainLayout.startAnimation(fallAnimation2);
+
+            }, 400);
             return insets;
         });
     }

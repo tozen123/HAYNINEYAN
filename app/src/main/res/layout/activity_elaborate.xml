@@ -5,6 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FiveEActivities.ElaborateActivity">
+    tools:context=".FiveEActivities.ElaborateActivity"
+    android:background="@drawable/bg_blurred"
+    >
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/headerImage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
+        android:src="@drawable/elaborate_text_png"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
