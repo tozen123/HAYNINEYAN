@@ -88,4 +88,132 @@
             4.	How do you use Punnett squares to predict traits in non-Mendelian inheritance?
 
     </string>
+    <string name="videoguidequestion2">
+
+
+        \n
+        Guide Questions:
+        \n
+        \n
+
+            1.	Why are X-linked traits more common in boys than in girls?
+        \n
+        \n
+
+            2.	What are Y-linked traits, and how do fathers pass them to their sons?
+        \n
+        \n
+
+           3.	What is the difference between sex-linked, sex-limited, and sex-influenced traits?
+        \n
+        \n
+
+
+    </string>
+
+    <string name="videoguidequestion3">
+
+
+        \n
+        Guide Questions:
+        \n
+        \n
+
+            1.	What is DNA?
+        \n
+        \n
+
+            2.	What is the structure of DNA?
+        \n
+        \n
+
+            3.	Why is it important for the base pairs in DNA to match up exactly?
+        \n
+        \n
+
+    </string>
+    <string name="keyconcept_explain_1"><i><b>Key concept:</b> </i>Incomplete dominance is a form of inheritance in which one allele for a specific trait is not completely dominant over the other allele. This results in a third phenotype in which the expressed physical trait is a combination of the dominant and recessive phenotype.</string>
+    <string name="keyconcept_explain_2"><i><b>Key concept:</b> </i> In codominance, both alleles are expressed equally in the phenotype of the heterozygote.</string>
+    <string name="keyconcept_explain_3">
+        \n
+
+        <i><b>Key concept:</b> </i>
+        \n
+        \n
+
+        •	In humans, there are four blood types (phenotypes): A, B, AB, O.
+        \n
+        \n
+
+        •	Blood type is controlled by three alleles: A, B, O.
+        \n
+        \n
+
+        •	O is recessive, two O alleles must be present for a person to have type O blood.
+        \n
+        \n
+
+        •	A and B are codominant. If a person receives an A allele and a B allele, their blood type is type AB.
+
+    </string>
+
+    <string name="keyconcept_explain_4">
+        \n
+
+        <i><b>Key concept:</b> </i>
+        \n
+        \n
+
+        •	Males have 44 body chromosomes and two sex chromosomes X and Y. The males determine the sex of their children.
+        \n
+
+        \n
+
+        •	Females have 44 body chromosomes and two sex chromosomes, both X.
+        \n
+
+        \n
+
+        •	The total number in each cell of an individual is 46. These chromosomes contain the genes, which are the factors of heredity
+
+
+    </string>
+    <string name="keyconcept_explain_5">
+        \n
+
+        <i><b>Key concept:</b> </i>
+        \n
+        \n
+        •	Sex-linked traits are inherited through the X chromosomes.
+        \n
+
+        \n
+
+        •	Males have only one X chromosome. Thus, if they inherit the affected X, they will have the disorder.
+        \n
+
+        \n
+
+        •	Females have two X chromosomes. Therefore, they can inherit/carry the trait without being affected if it acts in a recessive manner.
+
+
+
+    </string>
+    <string name="keyconcept_explain_6">
+        \n
+
+        <i><b>Key concept:</b> </i>
+        \n
+        \n
+      •	Sex-limited traits are those that are expressed exclusively in one sex.
+        \n
+
+        \n
+
+        •	Sex-influenced traits are expressed in both sexes but more frequently in one than in the other sex.
+
+
+
+    </string>
+    <string name="keyconcept_explain_7"> <i><b>Key concepts</b> </i>  \nDNA is composed of chains of nucleotides built on a sugar and phosphate backbone and wrapped around each other in the form of a double helix. The backbone supports four bases: guanine, cytosine, adenine, and thymine. Guanine and cytosine are complementary, always appearing opposite each other on the helix, as are adenine and thymine. This is critical in the reproduction of the genetic material, as it allows a strand to divide and copy itself, since it only needs half of the material in the helix to duplicate successfully.</string>
 </resources>

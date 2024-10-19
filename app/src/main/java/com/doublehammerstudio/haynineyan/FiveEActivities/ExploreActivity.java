@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -24,10 +25,13 @@ import com.doublehammerstudio.haynineyan.R;
 
 public class ExploreActivity extends AppCompatActivity {
     private ImageView headerImage;
-    private LinearLayout mainLayout;
-
+    private ScrollView mainLayout;
+    private Button backButton;
+    private LinearLayout videoViewLayout;
     private VideoView videoView1;
+    private VideoView videoView2;
     private TextView videoTitle1, videoGuideQuestion1;
+    private TextView videoTitle2, videoGuideQuestion2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +43,18 @@ public class ExploreActivity extends AppCompatActivity {
 
             headerImage = findViewById(R.id.headerImage);
             mainLayout = findViewById(R.id.mainLayout);
+            backButton = findViewById(R.id.backButton);
 
 
             videoTitle1 = findViewById(R.id.videoTitle1);
             videoGuideQuestion1 = findViewById(R.id.videoGuideQuestion1);
             videoView1 = findViewById(R.id.videoView1);
+
+            videoTitle2 = findViewById(R.id.videoTitle2);
+            videoView2 = findViewById(R.id.videoView2);
+
+            videoViewLayout = findViewById(R.id.videoViewLayout);
+
             MediaController mediaController = new MediaController(this);
             mediaController.setAnchorView(videoTitle1);
             videoView1.setMediaController(mediaController);
@@ -58,15 +69,44 @@ public class ExploreActivity extends AppCompatActivity {
                         videoTitle1.setText("Incomplete Dominance and Codominance");
                         videoGuideQuestion1.setText(R.string.videoguidequestion1);
 
-                        Uri nonMendelianVideoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.non_mendelian_incomplete_dominance_and_codominance_video_1);
-                        videoView1.setVideoURI(nonMendelianVideoUri);
+                        Uri nonMendelianVideoUri1 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.non_mendelian_incomplete_dominance_and_codominance_video_1);
+                        videoView1.setVideoURI(nonMendelianVideoUri1);
+
+                        videoTitle2.setVisibility(View.VISIBLE);
+                        videoView2.setVisibility(View.VISIBLE);
+                        videoViewLayout.setVisibility(View.VISIBLE);
+
+                        videoTitle2.setText("Multiple Alleles");
+
+                        Uri nonMendelianVideoUri2 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.non_mendelian_multiple_alleles_video_2);
+                        videoView2.setVideoURI(nonMendelianVideoUri2);
                         break;
 
                     case "Sex Related Inheritance":
+                        videoTitle1.setText("Sex Limited Traits and Sex Influenced Traits");
+                        videoGuideQuestion1.setText(R.string.videoguidequestion2);
 
+                        Uri sex1 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sex_related_sex_limited_traits_and_sex_influenced_traits_video_2);
+                        videoView1.setVideoURI(sex1);
+
+                        videoTitle2.setVisibility(View.VISIBLE);
+                        videoView2.setVisibility(View.VISIBLE);
+                        videoViewLayout.setVisibility(View.VISIBLE);
+                        videoTitle2.setText("Sex-Linked Genes");
+
+                        Uri sex2 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sex_related_sex_linked_genes_video_1);
+                        videoView2.setVideoURI(sex2);
                         break;
                     case "DNA":
+                        videoTitle2.setVisibility(View.GONE);
+                        videoView2.setVisibility(View.GONE);
+                        videoViewLayout.setVisibility(View.GONE);
 
+                        videoTitle1.setText("DNA");
+                        videoGuideQuestion1.setText(R.string.videoguidequestion3);
+
+                        Uri DNAVideoUri1 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.dna_video_1);
+                        videoView1.setVideoURI(DNAVideoUri1);
                         break;
                     default:
                         break;
@@ -87,6 +127,16 @@ public class ExploreActivity extends AppCompatActivity {
                 mainLayout.startAnimation(fallAnimation2);
 
             }, 400);
+            Animation bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    backButton.startAnimation(bounceAnimation);
+                    finish();
+                }
+            });
             return insets;
         });
     }

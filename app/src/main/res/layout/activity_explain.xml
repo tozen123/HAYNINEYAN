@@ -25,4 +25,663 @@
 
     </ImageView>
 
+
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/non_mendelian_layout"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_box"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/headerImage">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_margin="20dp"
+
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Non-Mendelian Patterns of Inheritance"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Incomplete Dominance"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="In incomplete dominance, a heterozygote shows a blended phenotype between the two homozygous phenotypes. This means that neither allele is dominant over the other.
+An example of incomplete dominance is flower color in four o’clock plant. When a pure red-flowered four o’clock plant is crossed with a pure white-flowered four o’clock plant, the offspring will produce neither red nor white flowers. Instead, all flowers will be pink.
+In incomplete dominance, it is only the phenotype that is a combination. The red and white alleles remain separate and distinct. Half the gametes of the pink four o’clock carry the allele for red and half carry the allele for white. Therefore, the genotypic ratio also becomes the phenotypic ratio.
+"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/non_mendelian_explain_image_1"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/keyconcept_explain_1"
+
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Codominance "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Another pattern of inheritance is codominance. This results when one allele is not dominant over the other. The resulting heterozygotes exhibit the traits of both parents. One example of codominance is fur color in cattle. Cattle can be red (RR = all red hairs), white (WW = all white hairs), or roan (RW = red and white hairs together). Roan cattle have a unique speckled pattern, resulting from the expression of both red and white alleles in their fur. Just like in incomplete dominance, the genotypic ratio in codominance also becomes the phenotypic ratio. "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/non_mendelian_explain_image_2"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/keyconcept_explain_2"
+
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+
+                    >
+
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Multiple Alleles "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sometimes, even if only two alleles control a trait, there may actually be more than two types of alleles available. This will also lead to more than two phenotypes expressed. Another blood group system in humans, the ABO system, is an example of a character governed by multiple alleles. Three alleles are responsible for this blood system: IA, IB, and i. There are four possible blood types. "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/non_mendelian_explain_image_3"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    >
+
+                </ImageView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The IA and IB alleles are dominant over the i allele, which is always recessive. However, when the IA and IB alleles are inherited together, both alleles are expressed equally. This also makes IA and IB codominants of each other."
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/keyconcept_explain_3"
+
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The inheritance of some characters does not strictly follow Mendel’s Law of Independent Assortment. There are many traits that are inherited together more frequently. For example, the expression of certain traits depends on whether one is male or female. Apparently, the expression of the traits is determined by or related to one’s sex. "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sex Chromosomes and Sex Determination "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Humans have 46 chromosomes in each cell. Observation of the human body cells shows 23 pairs of chromosomes for both males and females. Twenty- two pairs are somatic chromosomes. The 23rd pair consists of sex chromosomes. Human males and some other male organisms, such as other mammals and fruit flies, have non-identical sex chromosomes (XY). Females have identical (XX) sex chromosomes.
+Let us study gamete formation based on the sex chromosomes. You will observe that all egg cells receive an X chromosome; while half of the sperm cells receive X chromosomes and the other half receive Y chromosomes.
+"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/non_mendelian_explain_image_4"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                </ImageView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/non_mendelian_explain_image_5"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/keyconcept_explain_4"
+
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="38dp"
+                    >
+
+                </TextView>
+            </LinearLayout>
+
+
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+
+        android:id="@+id/sex_related_layout"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_box"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/headerImage">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_margin="20dp"
+
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sex-Related Inheritance"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sex-Linked Genes "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Genes located on the X chromosomes are called X-linked genes. Genes on the Y chromosomes are called Y-linked genes.
+                    \n\nAn example of an X-linked trait in humans is hemophilia. A person suffering from hemophilia could die from loss of blood even from a small wound because the blood either clots very slowly or does not clot at all. Another example of an X-linked trait is color blindness. To illustrate the inheritance of an X-linked trait, we will use color blindness in our discussion. Let us study Table 2. The X chromosome with the gene for color blindness is represented as XC, while the one without is represented as X.
+"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sex_related_explain_image_1"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="\nNotice that for a female to become color-blind, she must be homozygous (XCXC) for the color-blind genes. The trait is, therefore, recessive in females. If a female has only one X chromosome with the allele for color blindness, she becomes normal but can pass on the trait to her offspring. She is therefore a carrier of the trait. Since males have only one X chromosome, the gene for color blindness when present in the male, will always be expressed because it does not have an allele to hide or prevent its expression. Thus, the male will be color- blind. This is the reason why color blindness is more common in males than in females. "
+
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="\nAn example of a Y-linked trait is Hypertrichosis pinnae auris, a genetic disorder in humans that causes hairy ears. Since the trait is found in the Y chromosome, then only males can have the trait. A father who has the condition will pass it on to all his sons, and they, in turn, will pass it on to their own sons.\n"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sex_related_explain_image_2"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/keyconcept_explain_5"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sex-Limited Traits  "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\nSex-limited traits are generally autosomal, which means that they are not found on the X or Y chromosomes. The genes for these traits behave exactly the same way that any autosomal gene behaves. The difference here comes in the expression of the genes in the phenotype of the individual. Sex-limited traits are expressed in only one gender.
+\n\nIn cattle, for instance, lactation is expressed in females but never in males. Both male and female cattle however possess a gene pair for lactation. The gene for lactation (L) is dominant over the non-lactating gene (l). Table 3 shows the genotypes and phenotypes of the gene for lactation. These genes are carried by both males and females, but it is only expressed in females. In female cattle, if they possess at least one gene pair for lactation (L), the female produces milk. In male cattle, it does not matter if they possess one or two genes for lactation. They never produce milk.
+"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sex_related_explain_image_3"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sex-Influenced Traits "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\nSex-influenced traits are also autosomal, meaning that their genes are not carried on the sex chromosomes. Again, what makes these traits unusual is the way they are expressed phenotypically. In this case, the difference is in the ways the two genders express the genes. One classic example of a sex-influenced trait is pattern baldness in humans, though the condition is not restricted to males. This gene has two alleles, “bald” and “non-bald”. The behaviors of the products of these genes are highly influenced by the hormones in the individual, particularly by the hormone testosterone. All humans have testosterone, but males have much higher levels of this hormone than females do. The result is that, in males, the baldness allele behaves like a dominant allele, while in females it behaves like a recessive allele.
+
+"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sex_related_explain_image_4"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\nIf you look at the heterozygous gene pair for baldness (Bb), males express baldness, while females do not. Baldness may be expressed in females but it occurs more frequently in males. Such trait is sex-influenced because of a substance that is not produced equally in males and females."
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/keyconcept_explain_6"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="60dp"
+                    >
+
+                </TextView>
+            </LinearLayout>
+
+
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="visible"
+
+        android:id="@+id/dna_layout"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_box"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/headerImage">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_margin="20dp"
+
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DNA"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\nDNA is a macromolecule that forms a double helix structure in the cells (mostly in the nuclei and mitochondria) of living organism. The DNA molecule is considered the genetic material of all living cells. It is present in bacteria, protists, fungi, plants and animals. DNA is responsible for determining the specific characteristics of an organism."
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DNA: The Genetic Material "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+
+                    android:textSize="24dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\nScientists now know that the genetic material is DNA (Deoxyribonucleic acid). Modern research techniques helped scientists to answer many questions about DNA and heredity. The work of earlier scientists gave Watson and Crick a lot of information about DNA. By the end of the 1940’s, scientists had found that DNA consists of long strands of nucleotides. Each nucleotide contains a pentose sugar called deoxyribose, a phosphate group, and one of the four compounds called nitrogenous bases. "
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    >
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dna_explain_image_1"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/keyconcept_explain_7"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="80dp"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/back"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="15dp"
+        >
+
+    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>

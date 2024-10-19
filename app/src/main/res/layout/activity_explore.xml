@@ -26,82 +26,119 @@
 
     </ImageView>
 
-
-    <LinearLayout
-        android:visibility="visible"
+    <ScrollView
         android:id="@+id/mainLayout"
+        android:background="@drawable/rounded_box"
         android:layout_width="match_parent"
         android:layout_height="550dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerImage"
         android:layout_margin="5dp"
         android:padding="10dp"
-        android:background="@drawable/rounded_box"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/headerImage">
+        android:visibility="invisible"
 
-        <ScrollView
+        >
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="550dp"
 
-            <LinearLayout
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/videoTitle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:text="Title"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textColor="@color/black"
+
+                android:textSize="24dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_background_with_stroke"
                 android:gravity="center"
-                android:padding="18dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/rounded_background_with_stroke"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:id="@+id/videoTitle1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="24dp"
-                        android:textStyle="bold"
-                        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-                        android:layout_margin="20dp"
-
-                        android:text="Title"
-                        android:textColor="@color/black"
-                        >
-
-                    </TextView>
-
-                    <VideoView
-                        android:id="@+id/videoView1"
-                        android:layout_width="300dp"
-                        android:layout_height="300dp"
-                        android:layout_marginBottom="38dp"
-                        />
-
-                    <TextView
+                android:orientation="vertical">
 
 
-                        android:id="@+id/videoGuideQuestion1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-                        android:layout_margin="20dp"
-
-                        android:text="Guide Question:"
-                        android:textColor="@color/black"
-                        >
-
-                    </TextView>
-                </LinearLayout>
+                <VideoView
+                    android:id="@+id/videoView1"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="38dp" />
 
 
             </LinearLayout>
 
-        </ScrollView>
 
-    </LinearLayout>
+            <TextView
+                android:visibility="gone"
+
+                android:id="@+id/videoTitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Title"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textColor="@color/black"
+
+                android:textSize="24dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/videoViewLayout"
+
+                android:visibility="gone"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_background_with_stroke"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <VideoView
+                    android:id="@+id/videoView2"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="38dp" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+
+
+                android:id="@+id/videoGuideQuestion1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Guide Question:"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+
+                android:textColor="@color/black"
+                android:textSize="16dp">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 
