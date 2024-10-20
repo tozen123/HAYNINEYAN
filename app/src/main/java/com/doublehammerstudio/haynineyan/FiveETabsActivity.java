@@ -24,6 +24,7 @@ import com.doublehammerstudio.haynineyan.FiveEActivities.EngageActivity;
 import com.doublehammerstudio.haynineyan.FiveEActivities.EvaluateActivity;
 import com.doublehammerstudio.haynineyan.FiveEActivities.ExplainActivity;
 import com.doublehammerstudio.haynineyan.FiveEActivities.ExploreActivity;
+import com.doublehammerstudio.haynineyan.FiveEActivities.SetEvaluateDifficultyActivity;
 
 public class FiveETabsActivity extends AppCompatActivity {
 
@@ -144,7 +145,7 @@ public class FiveETabsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     evaluateButton.startAnimation(bounceAnimation);
-                    Intent intent = new Intent(FiveETabsActivity.this, EvaluateActivity.class);
+                    Intent intent = new Intent(FiveETabsActivity.this, SetEvaluateDifficultyActivity.class);
                     intent.putExtra("topic", value);
                     startActivity(intent);
                 }

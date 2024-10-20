@@ -13,6 +13,12 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".FiveEActivities.SetEvaluateDifficultyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserNameActivity"
+            android:exported="false" />
+        <activity
             android:name=".FiveEActivities.EvaluateActivity"
             android:exported="false" />
         <activity
