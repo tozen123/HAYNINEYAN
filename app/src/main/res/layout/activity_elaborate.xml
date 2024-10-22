@@ -8,19 +8,415 @@
     tools:context=".FiveEActivities.ElaborateActivity"
     android:background="@drawable/bg_blurred"
     >
+
+    <!-- Header Image -->
     <ImageView
-        android:visibility="invisible"
         android:id="@+id/headerImage"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        android:scaleType="centerCrop"
         android:padding="10dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/elaborate_text_png"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </ImageView>
+    <TextView
+        android:id="@+id/dominanceTypeSpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Dominance Type"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerImage">
 
+    </TextView>
+    <Spinner
+        android:padding="8dp"
+
+        android:id="@+id/dominanceTypeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
+        android:background="@drawable/rounded_box_spinner"
+        app:layout_constraintTop_toBottomOf="@id/dominanceTypeSpinnerLabel"
+        />
+
+    <TextView
+        android:id="@+id/categorySpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Category"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dominanceTypeSpinner">
+
+    </TextView>
+    <Spinner
+        android:padding="8dp"
+
+        android:id="@+id/categorySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
+        android:background="@drawable/rounded_box_spinner"
+        app:layout_constraintTop_toBottomOf="@id/categorySpinnerLabel"
+        tools:layout_editor_absoluteX="18dp" />
+
+    <TextView
+        android:id="@+id/parent1Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:text="Parent 1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/parentOneSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categorySpinner">
+
+    </TextView>
+
+    <Spinner
+        android:padding="4dp"
+
+        android:id="@+id/parentOneSpinner"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
+
+        android:background="@drawable/rounded_box_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parent1Label" />
+
+    <TextView
+        android:id="@+id/parent2Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Parent 2"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/parentTwoSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parentOneSpinner">
+
+    </TextView>
+
+    <Spinner
+        android:padding="4dp"
+        android:id="@+id/parentTwoSpinner"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
+        android:background="@drawable/rounded_box_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent2Label" />
+
+    <!-- Punnett Square Grid -->
+    <GridLayout
+        android:id="@+id/punnett_square_grid"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:padding="16dp"
+        android:background="@drawable/rounded_box"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parentTwoSpinner">
+
+        <!-- First row and first column (Genotype letters) -->
+
+        <!-- Empty top-left cell -->
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text=""
+            android:layout_gravity="center" />
+        <!-- Vertical Divider -->
+
+        <!-- Parent 2 - Allele 1 -->
+        <TextView
+            android:id="@+id/parent2_allele1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="W"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Parent 2 - Allele 2 -->
+        <TextView
+            android:id="@+id/parent2_allele2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="W"
+            android:textStyle="bold"
+
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Parent 1 - Allele 1 -->
+        <TextView
+            android:id="@+id/parent1_allele1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="R"
+            android:textStyle="bold"
+
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+
+
+        <!-- Cell 1 (Punnett Square, first child) -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/border_box"
+            android:padding="8dp"
+            >
+            <ImageView
+                android:id="@+id/punnett_cell_1_image"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="centerInside" />
+            <TextView
+                android:id="@+id/punnett_cell_1_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Cell 2 (Punnett Square, second child) -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/border_box"
+            android:padding="8dp"
+
+            >
+            <ImageView
+                android:id="@+id/punnett_cell_3_image"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="centerInside" />
+            <TextView
+                android:id="@+id/punnett_cell_3_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Parent 1 - Allele 2 -->
+        <TextView
+            android:id="@+id/parent1_allele2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="W"
+            android:textStyle="bold"
+
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Cell 3 (Punnett Square, third child) -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_box"
+            android:padding="8dp"
+
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/punnett_cell_2_image"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="centerInside" />
+            <TextView
+                android:id="@+id/punnett_cell_2_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Cell 4 (Punnett Square, fourth child) -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_box"
+            android:padding="8dp"
+
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/punnett_cell_4_image"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="centerInside" />
+            <TextView
+                android:id="@+id/punnett_cell_4_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+    </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/results_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/punnett_square_grid"
+        tools:layout_editor_absoluteX="16dp">
+
+        <!-- Left side (Genotype and Phenotype) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/genotype_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Genotype:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/genotype_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 RR"
+                android:textColor="@color/black"
+
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/phenotype_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phenotype:"
+                android:textColor="@color/black"
+
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/phenotype_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 Red"
+                android:textColor="@color/black"
+
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Right side (Genotypic and Phenotypic Ratios) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/genotypic_ratio_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Genotypic ratio:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/genotypic_ratio_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100% RR"
+                android:textColor="@color/black"
+
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/phenotypic_ratio_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phenotypic ratio:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/phenotypic_ratio_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textColor="@color/black"
+
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
