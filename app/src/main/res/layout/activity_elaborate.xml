@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Dominance Type"
+        android:text="Type of Non-Mendelian Inheritance"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"

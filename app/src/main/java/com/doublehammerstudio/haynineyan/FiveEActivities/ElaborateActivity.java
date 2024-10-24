@@ -35,8 +35,8 @@ public class ElaborateActivity extends AppCompatActivity {
     private TextView cell1Text, cell2Text, cell3Text, cell4Text;
 
     // Data for spinners
-    private String[] dominanceTypes = {"Incomplete Dominance", "Codominance"};
-    private String[] categories = {"Flower", "Dog"};
+    private String[] dominanceTypes = {"Incomplete Dominance", "Codominance", "Multiple Alleles"};
+    private String[] categories = {"Flower", "Dog", "Blood"};
     private HashMap<String, String[]> genotypeMap = new HashMap<>();
     private HashMap<String, int[]> imageMap = new HashMap<>();
 
@@ -96,7 +96,7 @@ public class ElaborateActivity extends AppCompatActivity {
             imageMap.put("Codominance_Flower", new int[]{R.drawable.codominance_red_and_white_flower});
             imageMap.put("Codominance_Dog", new int[]{R.drawable.codominance_black_and_white_dog});
 
-            // Handle selection of category
+            // Separate handling for categorySpinner
             categorySpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
@@ -105,8 +105,24 @@ public class ElaborateActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onNothingSelected(android.widget.AdapterView<?> parent) {
+                public void onNothingSelected(android.widget.AdapterView<?> parent) {}
+            });
+
+            // Separate handling for dominanceTypeSpinner
+            dominanceTypeSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+                    String selectedDominanceType = dominanceTypes[position];
+                    if (selectedDominanceType.equals("Multiple Alleles")) {
+                        // Automatically set the category to "Blood"
+                        categorySpinner.setSelection(findIndexInArray(categories, "Blood"));
+                    }
+
+                    updateParentSpinners(categorySpinner.getSelectedItem().toString());
                 }
+
+                @Override
+                public void onNothingSelected(android.widget.AdapterView<?> parent) {}
             });
 
             new Handler().postDelayed(() -> {
@@ -138,28 +154,43 @@ public class ElaborateActivity extends AppCompatActivity {
             }
         }
     }
-
+    // Helper method to find the index of a value in an array
+    private int findIndexInArray(String[] array, String value) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(value)) {
+                return i;
+            }
+        }
+        return -1; // Not found
+    }
     // Update parent genotype spinners based on the selected category
     private void updateParentSpinners(String category) {
-        String[] genotypes;
-        int[] images;
+        String[] genotypes = null;
+        int[] images = null;
 
         // Get the selected dominance type
         String selectedDominanceType = dominanceTypeSpinner.getSelectedItem().toString();
 
-        // Update genotype and image sets based on dominance type and category
-        if (selectedDominanceType.equals("Codominance")) {
+        // Handle Multiple Alleles case
+        if (selectedDominanceType.equals("Multiple Alleles")) {
+            // Set up genotype and image data for Multiple Alleles (Blood)
+            genotypes = new String[]{"A", "A+", "B", "B+", "AB", "OO"};
+            images = new int[]{R.drawable.multiple_alleles_blood_type_a, R.drawable.multiple_alleles_blood_type_a,
+                    R.drawable.multiple_alleles_blood_type_b, R.drawable.multiple_alleles_blood_type_b,
+                    R.drawable.multiple_alleles_blood_type_ab, R.drawable.multiple_alleles_blood_type_o};
+        }
+        // Handle Codominance case
+        else if (selectedDominanceType.equals("Codominance")) {
             if (category.equals("Flower")) {
                 genotypes = new String[]{"RR", "RW", "WW"}; // Codominance Flower genotypes
                 images = new int[]{R.drawable.red_flower_rr, R.drawable.codominance_red_and_white_flower, R.drawable.white_flower_ww}; // Codominance flower images
             } else if (category.equals("Dog")) {
                 genotypes = new String[]{"BB", "BW", "WW"}; // Codominance Dog genotypes
                 images = new int[]{R.drawable.black_dog_bb, R.drawable.codominance_black_and_white_dog, R.drawable.white_dog_ww}; // Codominance dog images
-            } else {
-                genotypes = null;
-                images = null;
             }
-        } else { // Handle Incomplete Dominance (your existing logic)
+        }
+        // Handle Incomplete Dominance case (existing logic)
+        else {
             genotypes = genotypeMap.get(category);
             images = imageMap.get(category);
         }
@@ -172,41 +203,212 @@ public class ElaborateActivity extends AppCompatActivity {
             GenotypeSpinnerAdapter parentTwoAdapter = new GenotypeSpinnerAdapter(this, genotypes, images);
             parentTwoSpinner.setAdapter(parentTwoAdapter);
 
-            // Calculate Punnett square when parents are selected
-            parentOneSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+            // Set up Punnett square calculation listeners for both spinners
+            android.widget.AdapterView.OnItemSelectedListener itemSelectedListener = new android.widget.AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
                     calculatePunnettSquare(parentOneSpinner.getSelectedItem().toString(), parentTwoSpinner.getSelectedItem().toString());
                 }
 
                 @Override
-                public void onNothingSelected(android.widget.AdapterView<?> parent) {
-                }
-            });
+                public void onNothingSelected(android.widget.AdapterView<?> parent) {}
+            };
 
-            parentTwoSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
-                    calculatePunnettSquare(parentOneSpinner.getSelectedItem().toString(), parentTwoSpinner.getSelectedItem().toString());
-                }
+            parentOneSpinner.setOnItemSelectedListener(itemSelectedListener);
+            parentTwoSpinner.setOnItemSelectedListener(itemSelectedListener);
 
-                @Override
-                public void onNothingSelected(android.widget.AdapterView<?> parent) {
-                }
-            });
         } else {
             Toast.makeText(this, "No genotypes found for selected category", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private String normalizeBloodGenotype(String genotype) {
+        genotype = genotype.toUpperCase().trim(); // Convert to uppercase and remove any extra spaces
 
+        // Normalize different forms of blood genotypes
+        switch (genotype) {
+            case "A+":
+            case "A":
+            case "IAIA":
+            case "IAI":
+            case "AI":
+            case "AA":
+            case "IA":
+                return "A+";
 
-    // Punnett square calculation and image display
+            case "A-":
+            case "IAi":
+            case "Ai":
+            case "IAi-":
+            case "AI-":
+                return "A-";
+
+            case "B+":
+            case "B":
+            case "IBIB":
+            case "IBI":
+            case "BI":
+            case "BB":
+            case "IB":
+                return "B+";
+
+            case "B-":
+            case "IBi":
+            case "Bi":
+            case "IBI-":
+            case "BI-":
+                return "B-";
+
+            case "AB+":
+            case "IAIB":
+            case "AB":
+            case "AIB":
+            case "IAIB+":
+                return "AB+";
+
+            case "IAIB-":
+                return "AB-";
+
+            case "ii":
+            case "OO":
+            case "O":
+            case "I":
+            case "O+":
+                return "O+";
+
+            case "ii-":
+            case "OO-":
+            case "O-":
+                return "O-";
+
+            default:
+                return genotype; // Return the input if it's already normalized
+        }
+    }
+    private String normalizeOffspringGenotype(String genotype) {
+        genotype = genotype.toUpperCase().trim(); // Convert to uppercase and remove any extra spaces
+
+        // Normalize different forms of offspring genotypes
+        switch (genotype) {
+            // Blood type A combinations
+            case "IAIA":
+            case "IAI":
+            case "AI":
+            case "AA":
+            case "A":
+                return "A";
+
+            case "IAi":
+            case "Ai":
+            case "A-":
+                return "A-";
+
+            // Blood type B combinations
+            case "IBIB":
+            case "IBI":
+            case "BI":
+            case "BB":
+            case "B":
+                return "B";
+
+            case "IBi":
+            case "Bi":
+            case "B-":
+                return "B-";
+
+            // Blood type AB combinations
+            case "IAIB":
+            case "AB":
+            case "AIB":
+                return "AB";
+
+            case "IAIB-":
+            case "AB-":
+                return "AB-";
+
+            // Blood type O combinations
+            case "ii":
+            case "OO":
+            case "O":
+                return "O";
+
+            case "O-":
+            case "ii-":
+            case "OO-":
+                return "O-";
+
+            default:
+                return genotype; // Return the input if it's already normalized
+        }
+    }
+
+    private String[] splitBloodGenotype(String genotype) {
+        if (genotype.endsWith("+") || genotype.endsWith("-")) {
+            return new String[]{genotype.substring(0, genotype.length() - 1), genotype.substring(genotype.length() - 1)};
+        }
+        return new String[]{genotype, ""}; // No Rh factor provided
+    }
+
+    private String combineBloodAndRh(String blood1, String blood2, String rh1, String rh2) {
+        String blood = (blood1.equals(blood2)) ? blood1 : "AB"; // Handle AB blood type or mix blood types
+        String rh = (rh1.equals("+") || rh2.equals("+")) ? "+" : "-"; // Rh+ is dominant
+        return blood + rh;
+    }
+
     // Punnett square calculation and image display
     private void calculatePunnettSquare(String parent1, String parent2) {
         // Clear the grid before displaying new combinations
         clearPunnettGrid();
 
+        // Check which category is selected and load appropriate images and genotypes
+        String selectedCategory = categorySpinner.getSelectedItem().toString();
+        String selectedDominanceType = dominanceTypeSpinner.getSelectedItem().toString();
+
+        // Handle Multiple Alleles (Blood Type)
+        if (selectedDominanceType.equals("Multiple Alleles") && selectedCategory.equals("Blood")) {
+            // Split the genotype into the blood type and Rh factor
+            String[] p1 = splitBloodGenotype(parent1);
+            String[] p2 = splitBloodGenotype(parent2);
+
+            // Extract alleles from each parent genotype
+            String p1_blood = p1[0]; // Blood type allele from parent 1
+            String p1_rh = p1[1];    // Rh factor from parent 1
+            String p2_blood = p2[0]; // Blood type allele from parent 2
+            String p2_rh = p2[1];    // Rh factor from parent 2
+
+            // Generate combinations for offspring
+            String offspring1 = combineBloodAndRh(p1_blood, p2_blood, p1_rh, p2_rh);
+            String offspring2 = combineBloodAndRh(p1_blood, p2_blood, p1_rh, p2_rh);
+            String offspring3 = combineBloodAndRh(p1_blood, p2_blood, p1_rh, p2_rh);
+            String offspring4 = combineBloodAndRh(p1_blood, p2_blood, p1_rh, p2_rh);
+
+            // Create an array of offspring genotypes
+            String[] offspring = {offspring1, offspring2, offspring3, offspring4};
+
+            // Update the parent alleles in the UI
+            TextView parent1Allele1 = findViewById(R.id.parent1_allele1);
+            TextView parent1Allele2 = findViewById(R.id.parent1_allele2);
+            TextView parent2Allele1 = findViewById(R.id.parent2_allele1);
+            TextView parent2Allele2 = findViewById(R.id.parent2_allele2);
+
+            parent1Allele1.setText(p1_blood + p1_rh);
+            parent1Allele2.setText(p1_blood + p1_rh);
+            parent2Allele1.setText(p2_blood + p2_rh);
+            parent2Allele2.setText(p2_blood + p2_rh);
+
+            // Call updateResults to set the genotype, phenotype, and ratios
+            updateResults(offspring);
+
+            // Update Punnett square with images and genotypes
+            setBloodTypeImages(offspring1, cell1Image, cell1Text);
+            setBloodTypeImages(offspring2, cell2Image, cell2Text);
+            setBloodTypeImages(offspring3, cell3Image, cell3Text);
+            setBloodTypeImages(offspring4, cell4Image, cell4Text);
+
+            return; // Exit early since this is a special case
+        }
+
+        // Handle other cases (Codominance, Incomplete Dominance)
         if (parent1.length() == 2 && parent2.length() == 2) {
             char p1_allele1 = parent1.charAt(0);
             char p1_allele2 = parent1.charAt(1);
@@ -224,20 +426,19 @@ public class ElaborateActivity extends AppCompatActivity {
             parent2Allele1.setText(String.valueOf(p2_allele1));
             parent2Allele2.setText(String.valueOf(p2_allele2));
 
+            // Calculate offspring genotypes
             String offspring1 = "" + p1_allele1 + p2_allele1;
             String offspring2 = "" + p1_allele1 + p2_allele2;
             String offspring3 = "" + p1_allele2 + p2_allele1;
             String offspring4 = "" + p1_allele2 + p2_allele2;
-            // Create an array of offspring
+
+            // Create an array of offspring genotypes
             String[] offspring = {offspring1, offspring2, offspring3, offspring4};
 
             // Call updateResults to set the genotype, phenotype, and ratios
             updateResults(offspring);
-            // Check which category is selected and load appropriate images and genotypes
-            String selectedCategory = categorySpinner.getSelectedItem().toString();
-            String selectedDominanceType = dominanceTypeSpinner.getSelectedItem().toString();
 
-
+            // Handle specific cases based on the selected dominance type and category
             if (selectedDominanceType.equals("Codominance")) {
                 // Handle codominance cases for flowers and dogs
                 if (selectedCategory.equals("Flower")) {
@@ -267,6 +468,52 @@ public class ElaborateActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    private void setBloodTypeImages(String genotype, ImageView imageView, TextView textView) {
+        textView.setText(genotype); // Set genotype letters
+        Toast.makeText(ElaborateActivity.this, genotype, Toast.LENGTH_SHORT).show();
+        switch (genotype) {
+            case "A+":
+            case "A-":
+                imageView.setImageResource(R.drawable.multiple_alleles_blood_type_a);
+                textView.setText("A");
+                break;
+
+            case "B+":
+            case "B-":
+                imageView.setImageResource(R.drawable.multiple_alleles_blood_type_b);
+                textView.setText("B");
+                break;
+
+            case "AB+":
+            case "AB-":
+                imageView.setImageResource(R.drawable.multiple_alleles_blood_type_ab);
+                textView.setText("AB");
+                break;
+
+            case "O+":
+            case "OO":
+            case "OO-":
+            case "OO+":
+            case "O-":
+                imageView.setImageResource(R.drawable.multiple_alleles_blood_type_o);
+                textView.setText("O");
+                break;
+
+            default:
+                imageView.setImageResource(android.R.color.transparent); // Handle missing cases
+                textView.setText("");
+                break;
+        }
+    }
+
+
+
+
+
+
+
 
 
     // Method to set flower Punnett square images and text
@@ -329,10 +576,11 @@ public class ElaborateActivity extends AppCompatActivity {
     private void updateResults(String[] offspring) {
         int countRR = 0, countRW = 0, countWW = 0; // Flower genotype counts
         int countBB = 0, countBW = 0, countWW_dog = 0; // Dog genotype counts
+        int countA = 0, countA_ = 0, countB = 0, countB_ = 0, countAB = 0, countO = 0; // Blood type counts
 
         String selectedCategory = categorySpinner.getSelectedItem().toString();
 
-        // Count the occurrences of each genotype based on the category (Flower or Dog)
+        // Count the occurrences of each genotype based on the category
         if (selectedCategory.equals("Flower")) {
             for (String genotype : offspring) {
                 switch (genotype) {
@@ -379,16 +627,9 @@ public class ElaborateActivity extends AppCompatActivity {
             int total = countRR + countRW + countWW;
 
             if (countRR > 0) genotypicRatioText.append((countRR * 100 / total)).append("% RR");
-            if (countRW > 0) {
-                if (genotypicRatioText.length() > 0) genotypicRatioText.append(", ");
-                genotypicRatioText.append((countRW * 100 / total)).append("% RW");
-            }
-            if (countWW > 0) {
-                if (genotypicRatioText.length() > 0) genotypicRatioText.append(", ");
-                genotypicRatioText.append((countWW * 100 / total)).append("% WW");
-            }
+            if (countRW > 0) genotypicRatioText.append(", ").append((countRW * 100 / total)).append("% RW");
+            if (countWW > 0) genotypicRatioText.append(", ").append((countWW * 100 / total)).append("% WW");
 
-            // Set Genotypic Ratio for Flower
             genotypicRatioValue.setText(genotypicRatioText.toString());
 
             // Set Phenotypic Ratio for Flower
@@ -438,20 +679,107 @@ public class ElaborateActivity extends AppCompatActivity {
             int total = countBB + countBW + countWW_dog;
 
             if (countBB > 0) genotypicRatioText.append((countBB * 100 / total)).append("% BB");
-            if (countBW > 0) {
-                if (genotypicRatioText.length() > 0) genotypicRatioText.append(", ");
-                genotypicRatioText.append((countBW * 100 / total)).append("% BW");
-            }
-            if (countWW_dog > 0) {
-                if (genotypicRatioText.length() > 0) genotypicRatioText.append(", ");
-                genotypicRatioText.append((countWW_dog * 100 / total)).append("% WW");
-            }
+            if (countBW > 0) genotypicRatioText.append(", ").append((countBW * 100 / total)).append("% BW");
+            if (countWW_dog > 0) genotypicRatioText.append(", ").append((countWW_dog * 100 / total)).append("% WW");
 
             genotypicRatioValue.setText(genotypicRatioText.toString());
+            phenotypicRatioValue.setText(total + " Total");
 
+        } else if (selectedCategory.equals("Blood")) { // Multiple Alleles case for Blood types
+
+            for (String genotype : offspring) {
+                switch (genotype) {
+                    case "A":
+                    case "A+":
+                        countA++;
+                        break;
+                    case "A-":
+                        countA_++;
+                        break;
+                    case "B":
+                    case "B+":
+                        countB++;
+                        break;
+                    case "B-":
+                        countB_++;
+                        break;
+                    case "AB":
+                    case "AB-":
+                    case "AB+":
+                        countAB++;
+                        break;
+                    case "O":
+                    case "OO":
+                    case "OO+":
+                    case "O+":
+                        countO++;
+                        break;
+                    case "O-":
+                    case "OO-":
+                        countO++;
+                        break;
+                }
+            }
+
+            // Build the genotype and phenotype text based on non-zero counts for Blood
+            StringBuilder genotypeText = new StringBuilder();
+            StringBuilder phenotypeText = new StringBuilder();
+
+            if (countA > 0) {
+                genotypeText.append(countA).append(" A+");
+                phenotypeText.append(countA).append(" Type A+");
+            }
+            if (countA_ > 0) {
+                if (genotypeText.length() > 0) genotypeText.append(", ");
+                if (phenotypeText.length() > 0) phenotypeText.append(", ");
+                genotypeText.append(countA_).append(" A-");
+                phenotypeText.append(countA_).append(" Type A-");
+            }
+            if (countB > 0) {
+                if (genotypeText.length() > 0) genotypeText.append(", ");
+                if (phenotypeText.length() > 0) phenotypeText.append(", ");
+                genotypeText.append(countB).append(" B+");
+                phenotypeText.append(countB).append(" Type B+");
+            }
+            if (countB_ > 0) {
+                if (genotypeText.length() > 0) genotypeText.append(", ");
+                if (phenotypeText.length() > 0) phenotypeText.append(", ");
+                genotypeText.append(countB_).append(" B-");
+                phenotypeText.append(countB_).append(" Type B-");
+            }
+            if (countAB > 0) {
+                if (genotypeText.length() > 0) genotypeText.append(", ");
+                if (phenotypeText.length() > 0) phenotypeText.append(", ");
+                genotypeText.append(countAB).append(" AB");
+                phenotypeText.append(countAB).append(" Type AB");
+            }
+            if (countO > 0) {
+                if (genotypeText.length() > 0) genotypeText.append(", ");
+                if (phenotypeText.length() > 0) phenotypeText.append(", ");
+                genotypeText.append(countO).append(" O");
+                phenotypeText.append(countO).append(" Type O");
+            }
+
+            genotypeValue.setText(genotypeText.toString());
+            phenotypeValue.setText(phenotypeText.toString());
+
+            // Build the Genotypic Ratio for Blood
+            StringBuilder genotypicRatioText = new StringBuilder();
+            int total = countA + countA_ + countB + countB_ + countAB + countO;
+
+            if (countA > 0) genotypicRatioText.append((countA * 100 / total)).append("% A+");
+            if (countA_ > 0) genotypicRatioText.append(", ").append((countA_ * 100 / total)).append("% A-");
+            if (countB > 0) genotypicRatioText.append(", ").append((countB * 100 / total)).append("% B+");
+            if (countB_ > 0) genotypicRatioText.append(", ").append((countB_ * 100 / total)).append("% B-");
+            if (countAB > 0) genotypicRatioText.append(", ").append((countAB * 100 / total)).append("% AB");
+            if (countO > 0) genotypicRatioText.append(", ").append((countO * 100 / total)).append("% O");
+
+            genotypicRatioValue.setText(genotypicRatioText.toString());
             phenotypicRatioValue.setText(total + " Total");
         }
     }
+
+
     // Method to set codominance flower images and text
     private void setCodominanceFlowerImages(String genotype, ImageView imageView, TextView textView) {
         textView.setText(genotype); // Set genotype letters
