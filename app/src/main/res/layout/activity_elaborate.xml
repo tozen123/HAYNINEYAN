@@ -164,7 +164,7 @@
 
         <!-- Parent 2 - Allele 1 -->
         <TextView
-            android:id="@+id/parent2_allele1"
+            android:id="@+id/parent1_allele1"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="center"
@@ -176,7 +176,7 @@
 
         <!-- Parent 2 - Allele 2 -->
         <TextView
-            android:id="@+id/parent2_allele2"
+            android:id="@+id/parent1_allele2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="center"
@@ -189,7 +189,7 @@
 
         <!-- Parent 1 - Allele 1 -->
         <TextView
-            android:id="@+id/parent1_allele1"
+            android:id="@+id/parent2_allele1"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="center"
@@ -251,7 +251,7 @@
 
         <!-- Parent 1 - Allele 2 -->
         <TextView
-            android:id="@+id/parent1_allele2"
+            android:id="@+id/parent2_allele2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="center"
@@ -314,7 +314,7 @@
         android:id="@+id/results_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_box"
         android:gravity="center"
         android:orientation="horizontal"
@@ -322,9 +322,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/punnett_square_grid"
-        tools:layout_editor_absoluteX="16dp">
+        >
 
         <!-- Left side (Genotype and Phenotype) -->
         <LinearLayout
@@ -340,7 +339,7 @@
                 android:layout_height="wrap_content"
                 android:text="Genotype:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -350,7 +349,7 @@
                 android:text="4 RR"
                 android:textColor="@color/black"
 
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/phenotype_label"
@@ -359,7 +358,7 @@
                 android:text="Phenotype:"
                 android:textColor="@color/black"
 
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -369,7 +368,7 @@
                 android:text="4 Red"
                 android:textColor="@color/black"
 
-                android:textSize="16sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Right side (Genotypic and Phenotypic Ratios) -->
@@ -386,7 +385,7 @@
                 android:layout_height="wrap_content"
                 android:text="Genotypic ratio:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
 
                 android:textStyle="bold" />
 
@@ -397,7 +396,7 @@
                 android:text="100% RR"
                 android:textColor="@color/black"
 
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/phenotypic_ratio_label"
@@ -405,7 +404,7 @@
                 android:layout_height="wrap_content"
                 android:text="Phenotypic ratio:"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
 
                 android:textStyle="bold" />
 
@@ -416,7 +415,21 @@
                 android:text="4"
                 android:textColor="@color/black"
 
-                android:textSize="16sp" />
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+
+        android:background="@drawable/back"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/results_layout">
+
+    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>
