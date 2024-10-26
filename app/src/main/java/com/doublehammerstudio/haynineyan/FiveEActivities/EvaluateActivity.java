@@ -718,110 +718,102 @@ public class EvaluateActivity extends AppCompatActivity {
                                 questions = allDNAEasyQuestions.subList(0, 5);  // Select 5 random questions
 
                                 break;
-                            case "DNA":
-                                switch (difficulty) {
-                                    case "Easy":
-                                        // Already implemented Easy questions (from previous example)
-                                        break;
+                            case "Average":
+                                // Full list of 10 average questions
+                                List<Question> allDNAAverageQuestions = Arrays.asList(
+                                        new Question("What is the basic unit of DNA called?",
+                                                Arrays.asList("Nucleotide", "Amino acid", "Chromosome", "Gene"),
+                                                "Nucleotide",
+                                                "Explanation: The basic unit of DNA is the nucleotide, which consists of a phosphate group, a deoxyribose sugar, and a nitrogenous base."
+                                        ),
+                                        new Question("What are the four nitrogenous bases found in DNA?",
+                                                Arrays.asList("Adenine, guanine, cytosine, thymine", "Adenine, uracil, cytosine, thymine", "Adenine, guanine, cytosine, uracil", "Cytosine, thymine, ribose, adenine"),
+                                                "Adenine, guanine, cytosine, thymine",
+                                                "Explanation: The four nitrogenous bases in DNA are adenine (A), guanine (G), cytosine (C), and thymine (T)."
+                                        ),
+                                        new Question("How does DNA replicate itself?",
+                                                Arrays.asList("By splitting in half and forming new strands", "By using RNA as a template", "By mitosis", "By fusing with proteins"),
+                                                "By splitting in half and forming new strands",
+                                                "Explanation: DNA replicates by unwinding and splitting the double helix, where each strand serves as a template for a new complementary strand."
+                                        ),
+                                        new Question("Which enzyme is responsible for synthesizing new DNA strands during replication?",
+                                                Arrays.asList("RNA polymerase", "DNA ligase", "DNA polymerase", "Helicase"),
+                                                "DNA polymerase",
+                                                "Explanation: DNA polymerase is the enzyme responsible for synthesizing new DNA strands by adding nucleotides complementary to the template strand."
+                                        ),
+                                        new Question("What is the role of the promoter in DNA?",
+                                                Arrays.asList("It initiates DNA replication.", "It signals the start of transcription.", "It helps with DNA repair.", "It binds to the ribosome."),
+                                                "It signals the start of transcription.",
+                                                "Explanation: The promoter is a region of DNA that signals the beginning of transcription, allowing RNA polymerase to bind and start synthesizing RNA."
+                                        ),
+                                        new Question("What type of bond connects the phosphate group of one nucleotide to the sugar of another nucleotide?",
+                                                Arrays.asList("Hydrogen bond", "Ionic bond", "Peptide bond", "Phosphodiester bond"),
+                                                "Phosphodiester bond",
+                                                "Explanation: A phosphodiester bond connects the phosphate group of one nucleotide to the deoxyribose sugar of the next nucleotide, forming the DNA backbone."
+                                        ),
+                                        new Question("What is the significance of complementary base pairing in DNA?",
+                                                Arrays.asList("It allows for DNA to replicate accurately.", "It stabilizes the DNA molecule.", "It influences gene expression.", "All of the above."),
+                                                "All of the above.",
+                                                "Explanation: Complementary base pairing is crucial for accurate DNA replication, stability of the DNA structure, and proper gene expression."
+                                        ),
+                                        new Question("How many chromosomes do humans typically have in each somatic cell?",
+                                                Arrays.asList("23", "46", "92", "48"),
+                                                "46",
+                                                "Explanation: Humans typically have 46 chromosomes in each somatic cell, organized into 23 pairs."
+                                        ),
+                                        new Question("Which of the following processes involves the use of DNA?",
+                                                Arrays.asList("Transcription", "Translation", "Replication", "All of the above"),
+                                                "All of the above",
+                                                "Explanation: All of these processes—transcription (making RNA), translation (making proteins), and replication (copying DNA)—involve DNA."
+                                        ),
+                                        new Question("What happens during the process of transcription?",
+                                                Arrays.asList("DNA is copied into RNA.", "RNA is translated into proteins.", "DNA is repaired.", "DNA is replicated."),
+                                                "DNA is copied into RNA.",
+                                                "Explanation: During transcription, a specific segment of DNA is copied into RNA by the enzyme RNA polymerase."
+                                        )
+                                );
 
-                                    case "Average":
-                                        // Full list of 10 average questions
-                                        List<Question> allDNAAverageQuestions = Arrays.asList(
-                                                new Question("What is the basic unit of DNA called?",
-                                                        Arrays.asList("Nucleotide", "Amino acid", "Chromosome", "Gene"),
-                                                        "Nucleotide",
-                                                        "Explanation: The basic unit of DNA is the nucleotide, which consists of a phosphate group, a deoxyribose sugar, and a nitrogenous base."
-                                                ),
-                                                new Question("What are the four nitrogenous bases found in DNA?",
-                                                        Arrays.asList("Adenine, guanine, cytosine, thymine", "Adenine, uracil, cytosine, thymine", "Adenine, guanine, cytosine, uracil", "Cytosine, thymine, ribose, adenine"),
-                                                        "Adenine, guanine, cytosine, thymine",
-                                                        "Explanation: The four nitrogenous bases in DNA are adenine (A), guanine (G), cytosine (C), and thymine (T)."
-                                                ),
-                                                new Question("How does DNA replicate itself?",
-                                                        Arrays.asList("By splitting in half and forming new strands", "By using RNA as a template", "By mitosis", "By fusing with proteins"),
-                                                        "By splitting in half and forming new strands",
-                                                        "Explanation: DNA replicates by unwinding and splitting the double helix, where each strand serves as a template for a new complementary strand."
-                                                ),
-                                                new Question("Which enzyme is responsible for synthesizing new DNA strands during replication?",
-                                                        Arrays.asList("RNA polymerase", "DNA ligase", "DNA polymerase", "Helicase"),
-                                                        "DNA polymerase",
-                                                        "Explanation: DNA polymerase is the enzyme responsible for synthesizing new DNA strands by adding nucleotides complementary to the template strand."
-                                                ),
-                                                new Question("What is the role of the promoter in DNA?",
-                                                        Arrays.asList("It initiates DNA replication.", "It signals the start of transcription.", "It helps with DNA repair.", "It binds to the ribosome."),
-                                                        "It signals the start of transcription.",
-                                                        "Explanation: The promoter is a region of DNA that signals the beginning of transcription, allowing RNA polymerase to bind and start synthesizing RNA."
-                                                ),
-                                                new Question("What type of bond connects the phosphate group of one nucleotide to the sugar of another nucleotide?",
-                                                        Arrays.asList("Hydrogen bond", "Ionic bond", "Peptide bond", "Phosphodiester bond"),
-                                                        "Phosphodiester bond",
-                                                        "Explanation: A phosphodiester bond connects the phosphate group of one nucleotide to the deoxyribose sugar of the next nucleotide, forming the DNA backbone."
-                                                ),
-                                                new Question("What is the significance of complementary base pairing in DNA?",
-                                                        Arrays.asList("It allows for DNA to replicate accurately.", "It stabilizes the DNA molecule.", "It influences gene expression.", "All of the above."),
-                                                        "All of the above.",
-                                                        "Explanation: Complementary base pairing is crucial for accurate DNA replication, stability of the DNA structure, and proper gene expression."
-                                                ),
-                                                new Question("How many chromosomes do humans typically have in each somatic cell?",
-                                                        Arrays.asList("23", "46", "92", "48"),
-                                                        "46",
-                                                        "Explanation: Humans typically have 46 chromosomes in each somatic cell, organized into 23 pairs."
-                                                ),
-                                                new Question("Which of the following processes involves the use of DNA?",
-                                                        Arrays.asList("Transcription", "Translation", "Replication", "All of the above"),
-                                                        "All of the above",
-                                                        "Explanation: All of these processes—transcription (making RNA), translation (making proteins), and replication (copying DNA)—involve DNA."
-                                                ),
-                                                new Question("What happens during the process of transcription?",
-                                                        Arrays.asList("DNA is copied into RNA.", "RNA is translated into proteins.", "DNA is repaired.", "DNA is replicated."),
-                                                        "DNA is copied into RNA.",
-                                                        "Explanation: During transcription, a specific segment of DNA is copied into RNA by the enzyme RNA polymerase."
-                                                )
-                                        );
+                                Collections.shuffle(allDNAAverageQuestions);
+                                questions = allDNAAverageQuestions.subList(0, 5);  // Select 5 random questions
 
-                                        Collections.shuffle(allDNAAverageQuestions);
-                                        questions = allDNAAverageQuestions.subList(0, 5);  // Select 5 random questions
+                                break;
+                            case "Difficult":
+                                List<Question> allDNADifficultQuestions = Arrays.asList(
+                                        new Question("What is the role of telomeres in DNA replication?",
+                                                Arrays.asList("They act as a primer for replication.", "They prevent the loss of genetic information during replication.", "They are involved in protein synthesis.", "They facilitate the binding of RNA polymerase."),
+                                                "They prevent the loss of genetic information during replication.",
+                                                "Explanation: Telomeres are repetitive DNA sequences at the ends of chromosomes that protect against the loss of genetic information during DNA replication."
+                                        ),
+                                        new Question("What is a mutation in DNA?",
+                                                Arrays.asList("A change in the nucleotide sequence", "A normal variation in DNA", "A replication error that is corrected", "An addition of new DNA sequences"),
+                                                "A change in the nucleotide sequence",
+                                                "Explanation: A mutation is a change in the nucleotide sequence of DNA, which can lead to changes in protein structure and function."
+                                        ),
+                                        new Question("How can DNA fingerprints be used in forensic science?",
+                                                Arrays.asList("To determine the age of a suspect", "To analyze protein synthesis", "To identify individuals based on unique DNA patterns", "To clone organisms"),
+                                                "To identify individuals based on unique DNA patterns",
+                                                "Explanation: DNA fingerprints analyze unique patterns in an individual's DNA, allowing forensic scientists to identify individuals with high accuracy."
+                                        ),
+                                        new Question("What is the significance of the antiparallel structure of DNA?",
+                                                Arrays.asList("It allows DNA to be stable and less susceptible to damage.", "It ensures proper base pairing during replication.", "It influences gene expression.", "It allows for the formation of the double helix."),
+                                                "It ensures proper base pairing during replication.",
+                                                "Explanation: The antiparallel structure of DNA (one strand running 5' to 3' and the other 3' to 5') is crucial for proper base pairing and accurate replication by DNA polymerase."
+                                        ),
+                                        new Question("In the context of DNA replication, what is the role of helicase?",
+                                                Arrays.asList("To synthesize new DNA strands", "To unwind the DNA double helix", "To seal the gaps between Okazaki fragments", "To create primers"),
+                                                "To unwind the DNA double helix",
+                                                "Explanation: Helicase is the enzyme responsible for unwinding the DNA double helix, allowing the replication machinery to access the single strands for replication."
+                                        ),
+                                        new Question("How does DNA methylation influence gene expression?",
+                                                Arrays.asList("It increases transcription rates.", "It serves as a signal for DNA repair.", "It generally represses gene expression by preventing transcription factors from binding.", "It enhances RNA splicing."),
+                                                "It generally represses gene expression by preventing transcription factors from binding.",
+                                                "Explanation: DNA methylation typically represses gene expression by adding methyl groups to cytosine bases in DNA, preventing transcription factors from accessing the DNA."
+                                        )
+                                );
 
-                                        break;
-                                    case "Difficult":
-                                        List<Question> allDNADifficultQuestions = Arrays.asList(
-                                                new Question("What is the role of telomeres in DNA replication?",
-                                                        Arrays.asList("They act as a primer for replication.", "They prevent the loss of genetic information during replication.", "They are involved in protein synthesis.", "They facilitate the binding of RNA polymerase."),
-                                                        "They prevent the loss of genetic information during replication.",
-                                                        "Explanation: Telomeres are repetitive DNA sequences at the ends of chromosomes that protect against the loss of genetic information during DNA replication."
-                                                ),
-                                                new Question("What is a mutation in DNA?",
-                                                        Arrays.asList("A change in the nucleotide sequence", "A normal variation in DNA", "A replication error that is corrected", "An addition of new DNA sequences"),
-                                                        "A change in the nucleotide sequence",
-                                                        "Explanation: A mutation is a change in the nucleotide sequence of DNA, which can lead to changes in protein structure and function."
-                                                ),
-                                                new Question("How can DNA fingerprints be used in forensic science?",
-                                                        Arrays.asList("To determine the age of a suspect", "To analyze protein synthesis", "To identify individuals based on unique DNA patterns", "To clone organisms"),
-                                                        "To identify individuals based on unique DNA patterns",
-                                                        "Explanation: DNA fingerprints analyze unique patterns in an individual's DNA, allowing forensic scientists to identify individuals with high accuracy."
-                                                ),
-                                                new Question("What is the significance of the antiparallel structure of DNA?",
-                                                        Arrays.asList("It allows DNA to be stable and less susceptible to damage.", "It ensures proper base pairing during replication.", "It influences gene expression.", "It allows for the formation of the double helix."),
-                                                        "It ensures proper base pairing during replication.",
-                                                        "Explanation: The antiparallel structure of DNA (one strand running 5' to 3' and the other 3' to 5') is crucial for proper base pairing and accurate replication by DNA polymerase."
-                                                ),
-                                                new Question("In the context of DNA replication, what is the role of helicase?",
-                                                        Arrays.asList("To synthesize new DNA strands", "To unwind the DNA double helix", "To seal the gaps between Okazaki fragments", "To create primers"),
-                                                        "To unwind the DNA double helix",
-                                                        "Explanation: Helicase is the enzyme responsible for unwinding the DNA double helix, allowing the replication machinery to access the single strands for replication."
-                                                ),
-                                                new Question("How does DNA methylation influence gene expression?",
-                                                        Arrays.asList("It increases transcription rates.", "It serves as a signal for DNA repair.", "It generally represses gene expression by preventing transcription factors from binding.", "It enhances RNA splicing."),
-                                                        "It generally represses gene expression by preventing transcription factors from binding.",
-                                                        "Explanation: DNA methylation typically represses gene expression by adding methyl groups to cytosine bases in DNA, preventing transcription factors from accessing the DNA."
-                                                )
-                                        );
+                                Collections.shuffle(allDNADifficultQuestions);
+                                questions = allDNADifficultQuestions.subList(0, 3);  // Select 3 random questions
 
-                                        Collections.shuffle(allDNADifficultQuestions);
-                                        questions = allDNADifficultQuestions.subList(0, 3);  // Select 3 random questions
-
-                                        break;
-                                }
                                 break;
 
                         }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/rounded_inputname_box">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="2"
+        android:layout_margin="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/tv_difficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Difficulty:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingTop="4dp" />
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/tv_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Score:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingTop="4dp" />
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/tv_percentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Percentage:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingTop="4dp" />
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingTop="4dp" />
+</LinearLayout>

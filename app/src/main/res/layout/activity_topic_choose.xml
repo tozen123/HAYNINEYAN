@@ -9,6 +9,19 @@
     tools:context=".TopicChooseActivity"
     android:background="@drawable/bg_blurred">
 
+    <Button
+        android:id="@+id/menuButton"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/menu_png"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Button>
+
+
     <!-- Splash Image -->
     <ImageView
         android:id="@+id/splashImage"

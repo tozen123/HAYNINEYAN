@@ -8,92 +8,371 @@
     tools:context=".FiveEActivities.ElaborateActivity"
     android:background="@drawable/bg_blurred">
 
-    <RelativeLayout
+    <!-- Top Section with Instructions -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="18dp"
-        android:padding="18dp">
-
-        <!-- Left side DNA bases (draggables) -->
-        <ImageView
-            android:id="@+id/adenine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="50dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/adenine_red" />
+        android:layout_height="wrap_content"
+        android:layout_margin="36dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="18dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/guanine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="100dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/guanine_blue" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/nitrogenous_base_legend" />
 
-        <ImageView
-            android:id="@+id/cytosine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="150dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cytosine_green" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="Drag and Drop the nitrogenous bases on the left side of the box."
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
 
-        <ImageView
-            android:id="@+id/thymine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/thymine_yellow" />
+    <!-- First Set of Matching Pairs (Initially Visible) -->
+    <LinearLayout
+        android:id="@+id/firstSetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="21dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_box"
+        android:padding="18dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <!-- Right side DNA bases (fixed positions) -->
-        <ImageView
-            android:id="@+id/target_thymine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="50dp"
-            android:scaleType="centerCrop"
-            android:scaleX="-1"
-            android:src="@drawable/thymine_yellow" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/adenine"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/adenine_red" />
+            <ImageView
+                android:id="@+id/target_thymine"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/thymine_yellow" />
+        </LinearLayout>
 
-        <ImageView
-            android:scaleX="-1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/guanine"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/guanine_blue" />
+            <ImageView
+                android:id="@+id/target_cytosine"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/cytosine_green" />
+        </LinearLayout>
 
-            android:id="@+id/target_cytosine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="100dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cytosine_green" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/cytosine"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cytosine_green" />
+            <ImageView
+                android:id="@+id/target_guanine"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/guanine_blue" />
+        </LinearLayout>
 
-        <ImageView
-            android:scaleX="-1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/adenine1"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/adenine_red" />
+            <ImageView
+                android:id="@+id/target_thymine1"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/thymine_yellow" />
+        </LinearLayout>
 
-            android:id="@+id/target_guanine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="150dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/guanine_blue" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/guanine1"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/guanine_blue" />
+            <ImageView
+                android:id="@+id/target_cytosine1"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/cytosine_green" />
+        </LinearLayout>
 
-        <ImageView
-            android:scaleX="-1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/adenine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/adenine_red" />
+            <ImageView
+                android:id="@+id/target_thymine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/thymine_yellow" />
+        </LinearLayout>
+    </LinearLayout>
 
-            android:id="@+id/target_adenine"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/adenine_red" />
+    <LinearLayout
+        android:id="@+id/secondSetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="21dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_box"
+        android:padding="18dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/cytosine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cytosine_green" />
+            <ImageView
+                android:id="@+id/target_guanine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/guanine_blue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/adenine3"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/adenine_red" />
+            <ImageView
+                android:id="@+id/target_thymine3"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/thymine_yellow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/cytosine3"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cytosine_green" />
+            <ImageView
+                android:id="@+id/target_guanine3"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/guanine_blue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/guanine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/guanine_blue" />
+            <ImageView
+                android:id="@+id/target_cytosine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/cytosine_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/thymine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/thymine_yellow" />
+            <ImageView
+                android:id="@+id/target_adenine2"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/adenine_red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/adenine4"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/adenine_red" />
+            <ImageView
+                android:id="@+id/target_thymine4"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:scaleX="-1"
+                android:src="@drawable/thymine_yellow" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/backButton1"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+
+        android:background="@drawable/back"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </Button>
 </androidx.constraintlayout.widget.ConstraintLayout>

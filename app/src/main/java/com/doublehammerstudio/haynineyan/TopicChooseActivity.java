@@ -3,6 +3,8 @@ package com.doublehammerstudio.haynineyan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -42,6 +44,17 @@ public class TopicChooseActivity extends AppCompatActivity {
             splashImage = findViewById(R.id.splashImage);
             scaleIdleAnimation = AnimationUtils.loadAnimation(this, R.anim.scale_idle);
             fadeAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+
+            Button menuButton = findViewById(R.id.menuButton);
+
+            menuButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(TopicChooseActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                }
+            });
+
 
             splashImage.startAnimation(fadeAnimation);
             new Handler().postDelayed(() -> {

@@ -1,5 +1,6 @@
 package com.doublehammerstudio.haynineyan.FiveEActivities;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.Handler;
 import android.text.Html;
 import android.util.TypedValue;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +41,7 @@ public class ElaborateActivity extends AppCompatActivity {
     private ImageView headerImage;
     private TextView genotypeValue, phenotypeValue, genotypicRatioValue, phenotypicRatioValue;
     private Button backButton;
+    private Button backButton1;
     private Animation bounceAnimation;
 
     private Spinner firstSpinner, categorySpinner, parentOneSpinner, parentTwoSpinner;
@@ -78,6 +82,7 @@ public class ElaborateActivity extends AppCompatActivity {
             categoryLabel = findViewById(R.id.categorySpinnerLabel);
 
             backButton = findViewById(R.id.backButton);
+
 
 
             genotypeValue = findViewById(R.id.genotype_value);
@@ -239,92 +244,225 @@ public class ElaborateActivity extends AppCompatActivity {
                     finish();
                 }
             });
+
+
+
             return insets;
         });
 
 
     }
-    private ImageView adenine, guanine, cytosine, thymine;
-    private ImageView targetAdenine, targetGuanine, targetCytosine, targetThymine;
-    private void createDNAElaborate(){
+    private LinearLayout firstSetLayout, secondSetLayout;
+    private ImageView cytosine, adenine, cytosine1, guanine, thymine, adenine2;
+    private ImageView targetGuanine, targetThymine, targetGuanine1, targetCytosine, targetAdenine, targetThymine1;
+    private ImageView adenine1, guanine1, targetThymine2, targetCytosine1;
+
+    private boolean isSecondSetActive = false;
+    private int matchedPairs = 0;
+    private final int TOTAL_PAIRS = 6;
+
+    private void createDNAElaborate() {
         setContentView(R.layout.activity_dna_elaborate);
+
+
+        backButton1 = findViewById(R.id.backButton1);
+        bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        backButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                backButton1.startAnimation(bounceAnimation);
+                finish();
+            }
+        });
+
+        firstSetLayout = findViewById(R.id.firstSetLayout);
+        secondSetLayout = findViewById(R.id.secondSetLayout);
+
+        initializeFirstSet();
+    }
+
+    private void initializeFirstSet() {
+        isSecondSetActive = false;
 
         adenine = findViewById(R.id.adenine);
         guanine = findViewById(R.id.guanine);
         cytosine = findViewById(R.id.cytosine);
-        thymine = findViewById(R.id.thymine);
+        adenine1 = findViewById(R.id.adenine1);
+        guanine1 = findViewById(R.id.guanine1);
+        adenine2 = findViewById(R.id.adenine2);
 
-        targetAdenine = findViewById(R.id.target_adenine);
-        targetGuanine = findViewById(R.id.target_guanine);
-        targetCytosine = findViewById(R.id.target_cytosine);
         targetThymine = findViewById(R.id.target_thymine);
+        targetCytosine = findViewById(R.id.target_cytosine);
+        targetGuanine = findViewById(R.id.target_guanine);
+        targetThymine1 = findViewById(R.id.target_thymine1);
+        targetThymine2 = findViewById(R.id.target_thymine2);
+        targetCytosine1 = findViewById(R.id.target_cytosine1);
 
-        setupDragAndDrop(adenine, targetThymine, "adenine", "thymine");
-        setupDragAndDrop(thymine, targetAdenine, "thymine", "adenine");
-        setupDragAndDrop(guanine, targetCytosine, "guanine", "cytosine");
-        setupDragAndDrop(cytosine, targetGuanine, "cytosine", "guanine");
+        initializeListeners();
     }
-    private void setupDragAndDrop(final ImageView base, final ImageView target, final String baseName, final String matchBaseName) {
-        base.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-                    v.startDragAndDrop(null, shadowBuilder, v, 0);
-                    return true;
-                }
-                return false;
-            }
-        });
 
-        target.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case DragEvent.ACTION_DRAG_STARTED:
-                        return true;
 
-                    case DragEvent.ACTION_DRAG_ENTERED:
-                        return true;
 
-                    case DragEvent.ACTION_DRAG_EXITED:
-                        return true;
 
-                    case DragEvent.ACTION_DROP:
-                        View draggedView = (View) event.getLocalState();
-                        String draggedBase = baseName;
-                        String targetBase = matchBaseName;
 
-                        // Check if the dragged base matches the target base
-                        if (draggedBase.equals(baseName) && targetBase.equals(matchBaseName)) {
-                            // Snap the dragged base to the target position
-                            draggedView.setX(target.getX() - draggedView.getWidth());
-                            draggedView.setY(target.getY());
-                            Toast.makeText(ElaborateActivity.this, "Correct Match!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // Return to original position if dropped incorrectly
-                            draggedView.setX(base.getX());
-                            draggedView.setY(base.getY());
-                            Toast.makeText(ElaborateActivity.this, "Incorrect Pairing", Toast.LENGTH_SHORT).show();
+    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+            ClipData clipData = ClipData.newPlainText("", "");
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+            view.startDrag(clipData, shadowBuilder, view, 0);
+            return false;
+        }
+    };
+
+    View.OnDragListener dragListener = new View.OnDragListener() {
+        @Override
+        public boolean onDrag(View thisView, DragEvent dragEvent) {
+            int _dragEvent = dragEvent.getAction();
+            final View draggedView = (View) dragEvent.getLocalState();
+
+            switch (_dragEvent) {
+                case DragEvent.ACTION_DROP:
+                    boolean matchFound = false;
+
+                    if (!isSecondSetActive) {
+                        if (thisView.getId() == R.id.target_thymine && draggedView.getId() == R.id.adenine) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_cytosine && draggedView.getId() == R.id.guanine) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_guanine && draggedView.getId() == R.id.cytosine) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_thymine1 && draggedView.getId() == R.id.adenine1) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_cytosine1 && draggedView.getId() == R.id.guanine1) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_thymine2 && draggedView.getId() == R.id.adenine2) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
                         }
-                        return true;
+                    } else {
+                        if (thisView.getId() == R.id.target_guanine2 && draggedView.getId() == R.id.cytosine2) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_thymine3 && draggedView.getId() == R.id.adenine3) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_guanine3 && draggedView.getId() == R.id.cytosine3) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_cytosine2 && draggedView.getId() == R.id.guanine2) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_adenine2 && draggedView.getId() == R.id.thymine2) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        } else if (thisView.getId() == R.id.target_thymine4 && draggedView.getId() == R.id.adenine4) {
+                            setLayoutParamsAndDisable(draggedView, thisView);
+                            matchFound = true;
+                        }
+                    }
 
-                    case DragEvent.ACTION_DRAG_ENDED:
-                        return true;
-
-                    default:
-                        break;
-                }
-                return true;
+                    if (matchFound) {
+                        matchedPairs++;
+                        if (matchedPairs == TOTAL_PAIRS) {
+                            Toast.makeText(ElaborateActivity.this, "Congratulations! You have matched all pairs!", Toast.LENGTH_SHORT).show();
+                            if (!isSecondSetActive) {
+                                loadNextSetOfPairs();
+                            }
+                        }
+                    } else {
+                        Toast.makeText(ElaborateActivity.this, "Incorrect Match", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
             }
-        });
+            return true;
+        }
+    };
+
+
+    private void setLayoutParamsAndDisable(View draggedView, View targetView) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 60);
+        params.setMargins(80, 0, -10, 0);
+        params.weight = 1;
+        draggedView.setLayoutParams(params);
+
+        params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 60);
+        params.setMargins(-10, 0, 80, 0);
+        params.weight = 1;
+        targetView.setLayoutParams(params);
+
+        targetView.setOnDragListener(null);
+        draggedView.setOnLongClickListener(null);
+    }
+
+    private void loadNextSetOfPairs() {
+        matchedPairs = 0;
+        firstSetLayout.setVisibility(View.GONE);
+        secondSetLayout.setVisibility(View.VISIBLE);
+        initializeSecondSet();
+    }
+
+    private void initializeListeners() {
+        if (!isSecondSetActive) {
+            adenine.setOnLongClickListener(longClickListener);
+            guanine.setOnLongClickListener(longClickListener);
+            cytosine.setOnLongClickListener(longClickListener);
+            adenine1.setOnLongClickListener(longClickListener);
+            adenine2.setOnLongClickListener(longClickListener);
+            guanine1.setOnLongClickListener(longClickListener);
+
+            targetThymine.setOnDragListener(dragListener);
+            targetCytosine.setOnDragListener(dragListener);
+            targetGuanine.setOnDragListener(dragListener);
+            targetThymine1.setOnDragListener(dragListener);
+            targetThymine2.setOnDragListener(dragListener);
+            targetCytosine1.setOnDragListener(dragListener);
+        } else {
+            adenine.setOnLongClickListener(longClickListener);
+            adenine1.setOnLongClickListener(longClickListener);
+            adenine2.setOnLongClickListener(longClickListener);
+            cytosine.setOnLongClickListener(longClickListener);
+            cytosine1.setOnLongClickListener(longClickListener);
+            guanine.setOnLongClickListener(longClickListener);
+            thymine.setOnLongClickListener(longClickListener);
+
+            targetThymine.setOnDragListener(dragListener);
+            targetThymine1.setOnDragListener(dragListener);
+            targetThymine2.setOnDragListener(dragListener);
+            targetCytosine.setOnDragListener(dragListener);
+            targetCytosine1.setOnDragListener(dragListener);
+            targetGuanine.setOnDragListener(dragListener);
+            targetGuanine1.setOnDragListener(dragListener);
+            targetAdenine.setOnDragListener(dragListener);
+        }
     }
 
 
+    private void initializeSecondSet() {
+        isSecondSetActive = true;
 
+        adenine = findViewById(R.id.adenine3);
+        cytosine = findViewById(R.id.cytosine2);
+        cytosine1 = findViewById(R.id.cytosine3);
+        guanine = findViewById(R.id.guanine2);
+        thymine = findViewById(R.id.thymine2);
+        adenine2 = findViewById(R.id.adenine4);
 
+        targetGuanine = findViewById(R.id.target_guanine2);
+        targetThymine = findViewById(R.id.target_thymine3);
+        targetGuanine1 = findViewById(R.id.target_guanine3);
+        targetCytosine = findViewById(R.id.target_cytosine2);
+        targetAdenine = findViewById(R.id.target_adenine2);
+        targetThymine1 = findViewById(R.id.target_thymine4);
 
+        initializeListeners();
+    }
 
 
 
