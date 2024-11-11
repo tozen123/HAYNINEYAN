@@ -33,6 +33,11 @@ public class AboutUsActivity extends AppCompatActivity {
             Intent intent = new Intent(AboutUsActivity.this, MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
+            soundPlayer.playWoodButtonSound();
+
+
             finish();
         });
     }

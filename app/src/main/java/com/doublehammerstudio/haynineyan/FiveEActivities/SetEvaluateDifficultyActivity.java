@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.doublehammerstudio.haynineyan.FiveETabsActivity;
 import com.doublehammerstudio.haynineyan.R;
+import com.doublehammerstudio.haynineyan.SoundEffectPlayer;
+import com.doublehammerstudio.haynineyan.TopicChooseActivity;
 
 public class SetEvaluateDifficultyActivity extends AppCompatActivity {
     private ImageView headerImage, ropeBG;
@@ -47,10 +50,23 @@ public class SetEvaluateDifficultyActivity extends AppCompatActivity {
 
             animateButtons();
 
-
+            Button backButton = findViewById(R.id.backButton);
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
+                    Intent intent = new Intent(SetEvaluateDifficultyActivity.this, TopicChooseActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
+                }
+            });
             easyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
                     Intent intent = new Intent(SetEvaluateDifficultyActivity.this, EvaluateActivity.class);
                     intent.putExtra("topic", value);
                     intent.putExtra("difficulty", "Easy");
@@ -61,6 +77,8 @@ public class SetEvaluateDifficultyActivity extends AppCompatActivity {
             averageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
                     Intent intent = new Intent(SetEvaluateDifficultyActivity.this, EvaluateActivity.class);
                     intent.putExtra("topic", value);
                     intent.putExtra("difficulty", "Average");
@@ -71,6 +89,8 @@ public class SetEvaluateDifficultyActivity extends AppCompatActivity {
             difficultyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
                     Intent intent = new Intent(SetEvaluateDifficultyActivity.this, EvaluateActivity.class);
                     intent.putExtra("topic", value);
                     intent.putExtra("difficulty", "Difficult");
@@ -83,7 +103,8 @@ public class SetEvaluateDifficultyActivity extends AppCompatActivity {
     }
     private void animateButtons() {
         new Handler().postDelayed(() -> {
-
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+            soundPlayer.playRopeAnimSound();
             Animation fallAnimation1 = AnimationUtils.loadAnimation(this, R.anim.fall_from_top);
             ropeBG.setVisibility(View.VISIBLE);
             ropeBG.startAnimation(fallAnimation1);

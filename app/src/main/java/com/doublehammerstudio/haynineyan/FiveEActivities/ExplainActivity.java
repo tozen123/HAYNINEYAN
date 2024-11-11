@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.doublehammerstudio.haynineyan.R;
+import com.doublehammerstudio.haynineyan.SoundEffectPlayer;
 
 public class ExplainActivity extends AppCompatActivity {
     private ImageView headerImage;
@@ -75,7 +76,8 @@ public class ExplainActivity extends AppCompatActivity {
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
                     backButton.startAnimation(bounceAnimation);
                     finish();
                 }

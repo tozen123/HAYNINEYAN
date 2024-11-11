@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,12 +30,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.doublehammerstudio.haynineyan.FiveETabsActivity;
 import com.doublehammerstudio.haynineyan.R;
+import com.doublehammerstudio.haynineyan.SoundEffectPlayer;
 import com.doublehammerstudio.haynineyan.TopicChooseActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class EngageActivity extends AppCompatActivity {
 
     private ImageView imageHolder1, imageHolder2, imageHolder3, imageHolder4;
     private LinearLayout inputLayout;
+    private GridLayout letterOptionsLayout;
     private String correctAnswer;
     private boolean inputBoxesCreated = false;
     private boolean answerCorrect = false;
@@ -44,6 +52,8 @@ public class EngageActivity extends AppCompatActivity {
     private TextView shortInfo;
     private LinearLayout mainLayout;
     private Animation bounceAnimation;
+
+    private List<Button> letterButtons = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +70,7 @@ public class EngageActivity extends AppCompatActivity {
         inputLayout = findViewById(R.id.inputLayout);
         backButton = findViewById(R.id.backButton);
         shortInfo = findViewById(R.id.shortInfo);
-
+        letterOptionsLayout = findViewById(R.id.letterOptionsLayout);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -101,6 +111,7 @@ public class EngageActivity extends AppCompatActivity {
 
             if (!inputBoxesCreated && correctAnswer != null) {
                 createInputBoxes(correctAnswer.length());
+                createLetterOptions(correctAnswer);
                 inputBoxesCreated = true;
             }
             bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce);
@@ -108,7 +119,8 @@ public class EngageActivity extends AppCompatActivity {
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
                     backButton.startAnimation(bounceAnimation);
                     finish();
                 }
@@ -143,7 +155,7 @@ public class EngageActivity extends AppCompatActivity {
 
             EditText letterBox = new EditText(this);
             letterBox.setLayoutParams(new LinearLayout.LayoutParams(
-                    60,
+                    100,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             ));
 
@@ -157,7 +169,7 @@ public class EngageActivity extends AppCompatActivity {
             letterBox.setBackground(getResources().getDrawable(R.drawable.rounded_input_box));
             letterBox.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) letterBox.getLayoutParams();
-            params.setMargins(10, 0, 10, 0);
+            params.setMargins(5, 0, 5, 0);
 
             letterBox.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -194,6 +206,96 @@ public class EngageActivity extends AppCompatActivity {
             inputLayout.addView(letterBox);
         }
     }
+
+    private void createLetterOptions(String answer) {
+        // Shuffle the letters of the correct answer
+        List<Character> letters = new ArrayList<>();
+        for (char c : answer.toCharArray()) {
+            letters.add(c);
+        }
+        Collections.shuffle(letters);
+
+        // Calculate the total number of grid cells (5 columns x 3 rows = 15)
+        int totalCells = 12;
+        int remainingCells = totalCells - letters.size();
+
+        // Add random letters to fill the remaining grid cells
+        for (int i = 0; i < remainingCells; i++) {
+            letters.add(getRandomLetter());
+        }
+
+        // Shuffle the entire list of letters again to mix the answer and random letters
+        Collections.shuffle(letters);
+
+        // Add each letter as a button in the GridLayout
+        for (char letter : letters) {
+            Button letterButton = new Button(this);
+            letterButton.setLayoutParams(new GridLayout.LayoutParams(
+                    new ViewGroup.LayoutParams(140, 140)
+            ));
+            letterButton.setText(String.valueOf(letter));
+            letterButton.setTextSize(21);
+            letterButton.setTypeface(Typeface.DEFAULT_BOLD);
+            letterButton.setBackground(getResources().getDrawable(R.drawable.rounded_letter_button));
+            letterButton.setOnClickListener(view -> onLetterClick(letterButton));
+
+            letterButtons.add(letterButton);
+            letterOptionsLayout.addView(letterButton);
+        }
+    }
+
+    private void resetLetterOptions() {
+        // Clear all input boxes
+        for (EditText letterBox : letterBoxes) {
+            letterBox.setText("");
+        }
+
+        // Re-enable all letter buttons
+        for (Button letterButton : letterButtons) {
+            letterButton.setEnabled(true);
+        }
+    }
+    private char getRandomLetter() {
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
+        return alphabet.charAt(random.nextInt(alphabet.length()));
+    }
+
+
+    private String shuffleLetters(String input) {
+        List<Character> characters = new ArrayList<>();
+        for (char c : input.toCharArray()) {
+            characters.add(c);
+        }
+        Collections.shuffle(characters);
+        StringBuilder shuffled = new StringBuilder();
+        for (char c : characters) {
+            shuffled.append(c);
+        }
+        return shuffled.toString();
+    }
+
+    private void onLetterClick(Button letterButton) {
+        SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
+        soundPlayer.playWoodButtonSound();
+
+        String letter = letterButton.getText().toString();
+
+        // Find first empty box and set letter
+        for (EditText letterBox : letterBoxes) {
+            if (letterBox.getText().toString().isEmpty()) {
+                letterBox.setText(letter);
+                letterButton.setEnabled(false); // Disable used letter
+                break;
+            }
+        }
+
+        if (areAllBoxesFilled()) {
+            checkAnswer();
+        }
+    }
+
+
     private boolean areAllBoxesFilled() {
         for (EditText letterBox : letterBoxes) {
             if (letterBox.getText().toString().isEmpty()) {
@@ -205,19 +307,20 @@ public class EngageActivity extends AppCompatActivity {
 
     private void checkAnswer() {
         StringBuilder userAnswer = new StringBuilder();
-
         for (EditText letterBox : letterBoxes) {
             userAnswer.append(letterBox.getText().toString().toUpperCase());
         }
 
         if (userAnswer.toString().equals(correctAnswer.toUpperCase())) {
-            if (!answerCorrect) {
-                showCorrectAnswerDialog();
-                shortInfo.setVisibility(View.VISIBLE);
-                answerCorrect = true;
-            }
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
+            soundPlayer.playCorrectAnswerSound();
+            showCorrectAnswerDialog();
+            shortInfo.setVisibility(View.VISIBLE);
         } else {
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
+            soundPlayer.playWrongAnswerSound();
             Toast.makeText(this, "Wrong Answer. Try Again!", Toast.LENGTH_SHORT).show();
+            resetLetterOptions(); // Reset input layout and letter options on wrong answer
         }
     }
 

@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/headerImage"
         android:layout_margin="5dp"
         android:padding="10dp"
-        android:visibility="invisible"
+        android:visibility="visible"
 
         >
 
@@ -46,6 +46,36 @@
 
             android:orientation="vertical"
             >
+
+            <TextView
+                android:id="@+id/instructions1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Title"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textColor="@color/black"
+
+                android:textSize="26dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/instructions2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Watch the videos and complete
+the accompanying guide
+questions in your notebook to
+check your understanding.
+"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textColor="@color/black"
+
+                android:textSize="18dp"
+                />
 
             <TextView
                 android:id="@+id/videoTitle1"

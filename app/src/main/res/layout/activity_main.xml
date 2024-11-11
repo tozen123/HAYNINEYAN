@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/bg_blurred"
+    android:background="@drawable/hay9yan_bg"
     >
 
     <ImageView
@@ -38,6 +38,6 @@
         app:layout_constraintTop_toBottomOf="@id/startButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="-50dp" />
+        android:layout_marginTop="-120dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

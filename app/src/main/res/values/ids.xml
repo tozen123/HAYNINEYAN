@@ -1,0 +1,4 @@
+<!-- res/values/ids.xml -->
+<resources>
+    <item name="base_type" type="id" />
+</resources>

@@ -1,6 +1,7 @@
 package com.doublehammerstudio.haynineyan;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -52,7 +53,20 @@ public class MenuActivity extends AppCompatActivity {
 
         Button btnRenameUsername = findViewById(R.id.btn_rename_username);
         btnRenameUsername.setOnClickListener(view -> showRenameDialog());
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
 
+                soundPlayer.playWoodButtonSound();
+
+                Intent intent = new Intent(MenuActivity.this, TopicChooseActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
+            }
+        });
 
         quizProgressRecyclerView = findViewById(R.id.quizProgressRecyclerView);
         quizProgressRecyclerView.setLayoutManager(new LinearLayoutManager(this));

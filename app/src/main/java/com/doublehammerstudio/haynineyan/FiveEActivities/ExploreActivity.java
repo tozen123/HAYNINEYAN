@@ -22,6 +22,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.doublehammerstudio.haynineyan.R;
+import com.doublehammerstudio.haynineyan.SoundEffectPlayer;
 
 public class ExploreActivity extends AppCompatActivity {
     private ImageView headerImage;
@@ -30,7 +31,7 @@ public class ExploreActivity extends AppCompatActivity {
     private LinearLayout videoViewLayout;
     private VideoView videoView1;
     private VideoView videoView2;
-    private TextView videoTitle1, videoGuideQuestion1;
+    private TextView videoTitle1, videoGuideQuestion1, instructions1;
     private TextView videoTitle2, videoGuideQuestion2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class ExploreActivity extends AppCompatActivity {
 
             videoTitle2 = findViewById(R.id.videoTitle2);
             videoView2 = findViewById(R.id.videoView2);
-
+            instructions1 = findViewById(R.id.instructions1);
             videoViewLayout = findViewById(R.id.videoViewLayout);
 
             MediaController mediaController = new MediaController(this);
@@ -80,6 +81,13 @@ public class ExploreActivity extends AppCompatActivity {
 
                         Uri nonMendelianVideoUri2 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.non_mendelian_multiple_alleles_video_2);
                         videoView2.setVideoURI(nonMendelianVideoUri2);
+
+                        instructions1.setText("INFO: These educational videos " +
+                                "offer supplementary insights and " +
+                                "information to help you learn " +
+                                "more about Incomplete Dominance, " +
+                                "Codominance, or Multiple " +
+                                "Alleles.");
                         break;
 
                     case "Sex Related Inheritance":
@@ -96,6 +104,11 @@ public class ExploreActivity extends AppCompatActivity {
 
                         Uri sex2 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sex_related_sex_linked_genes_video_1);
                         videoView2.setVideoURI(sex2);
+
+                        instructions1.setText("INFO: These educational videos " +
+                                "offer supplementary insights and " +
+                                "information to help you learn " +
+                                "more about Sex Limited Traits and Sex Influenced Traits");
                         break;
                     case "DNA":
                         videoTitle2.setVisibility(View.GONE);
@@ -107,6 +120,11 @@ public class ExploreActivity extends AppCompatActivity {
 
                         Uri DNAVideoUri1 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.dna_video_1);
                         videoView1.setVideoURI(DNAVideoUri1);
+
+                        instructions1.setText("INFO: These educational videos " +
+                                "offer supplementary insights and " +
+                                "information to help you learn " +
+                                "more about DNA");
                         break;
                     default:
                         break;
@@ -132,7 +150,8 @@ public class ExploreActivity extends AppCompatActivity {
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
                     backButton.startAnimation(bounceAnimation);
                     finish();
                 }

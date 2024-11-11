@@ -107,6 +107,10 @@ public class FiveETabsActivity extends AppCompatActivity {
             engageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+                    soundPlayer.playWoodButtonSound();
+
                     engageButton.startAnimation(bounceAnimation);
                     Intent intent = new Intent(FiveETabsActivity.this, EngageActivity.class);
                     intent.putExtra("topic", value);
@@ -117,6 +121,9 @@ public class FiveETabsActivity extends AppCompatActivity {
             exploreButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+
+                    soundPlayer.playWoodButtonSound();
                     exploreButton.startAnimation(bounceAnimation);
                     Intent intent = new Intent(FiveETabsActivity.this, ExploreActivity.class);
                     intent.putExtra("topic", value);
@@ -126,6 +133,9 @@ public class FiveETabsActivity extends AppCompatActivity {
             explainButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+
+                    soundPlayer.playWoodButtonSound();
                     explainButton.startAnimation(bounceAnimation);
                     Intent intent = new Intent(FiveETabsActivity.this, ExplainActivity.class);
                     intent.putExtra("topic", value);
@@ -135,6 +145,9 @@ public class FiveETabsActivity extends AppCompatActivity {
             elaborateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+
+                    soundPlayer.playWoodButtonSound();
                     elaborateButton.startAnimation(bounceAnimation);
                     Intent intent = new Intent(FiveETabsActivity.this, ElaborateActivity.class);
                     intent.putExtra("topic", value);
@@ -144,6 +157,9 @@ public class FiveETabsActivity extends AppCompatActivity {
             evaluateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+
+                    soundPlayer.playWoodButtonSound();
                     evaluateButton.startAnimation(bounceAnimation);
                     Intent intent = new Intent(FiveETabsActivity.this, SetEvaluateDifficultyActivity.class);
                     intent.putExtra("topic", value);
@@ -162,7 +178,9 @@ public class FiveETabsActivity extends AppCompatActivity {
     }
     private void animateButtons() {
         new Handler().postDelayed(() -> {
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
 
+            soundPlayer.playRopeAnimSound();
             Animation fallAnimation1 = AnimationUtils.loadAnimation(this, R.anim.fall_from_top);
             ropeBG.setVisibility(View.VISIBLE);
             ropeBG.startAnimation(fallAnimation1);

@@ -16,8 +16,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/rounded_box"
+        android:layout_height="160dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="18dp"
@@ -27,9 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Hello"
-            android:textColor="@color/black"
-            android:textSize="21dp"
+            android:text="HELLO!"
+            android:textColor="#34781B"
+            android:textSize="38dp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -40,9 +39,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Name"
-            android:textColor="#C58107"
+            android:textColor="#038F27"
             android:textSize="21dp"
             android:textStyle="bold"
+            android:background="@drawable/rounded_box_clean"
+            android:padding="12dp"
+            android:backgroundTint="#D2FFFFFF"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
@@ -51,13 +53,13 @@
 
     <Button
         android:id="@+id/btn_rename_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/rounded_box_button"
-        android:padding="18dp"
-        android:text="Rename Username"
+        android:text="Rename"
         android:textColor="@color/black"
+        android:backgroundTint="#BCFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -70,27 +72,44 @@
         android:text="Evaluate Progress History"
         app:layout_constraintTop_toBottomOf="@+id/btn_rename_username"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textColor="#1D650F"
+        android:textSize="24dp"
+        android:gravity="center"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginTop="18dp"
-        android:padding="18dp"
-        android:background="@drawable/rounded_box_browny"
+        android:padding="12dp"
+        android:background="@drawable/rounded_box_clean"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="12dp"
         >
 
     </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="12dp"
         android:id="@+id/quizProgressRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="350dp"
         android:padding="28dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:background="@drawable/rounded_box_browny"/>
+        android:background="@drawable/rounded_box_clean"
+        android:backgroundTint="#CDFFFFFF"
+
+        />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:background="@drawable/back"
+
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

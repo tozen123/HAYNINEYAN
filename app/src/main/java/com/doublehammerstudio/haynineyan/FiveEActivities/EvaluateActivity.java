@@ -22,8 +22,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.doublehammerstudio.haynineyan.MenuActivity;
 import com.doublehammerstudio.haynineyan.Question;
 import com.doublehammerstudio.haynineyan.R;
+import com.doublehammerstudio.haynineyan.SoundEffectPlayer;
+import com.doublehammerstudio.haynineyan.TopicChooseActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -906,6 +909,8 @@ public class EvaluateActivity extends AppCompatActivity {
                 child.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
 
                 if(((Button) child).getText().equals(correctAnswer)){
+
+
                     child.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
 
                 }
@@ -917,6 +922,7 @@ public class EvaluateActivity extends AppCompatActivity {
             clickedButton.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             correctAnswers++;
             showAnswerDialog(true);
+
         } else {
             clickedButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             showAnswerDialog(false);
@@ -925,6 +931,9 @@ public class EvaluateActivity extends AppCompatActivity {
 
 
     private void showAnswerDialog(boolean isCorrect) {
+
+        SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+
         isDialogShown = true;  // Mark dialog as shown
 
         // Get the current question to access the explanation
@@ -940,8 +949,11 @@ public class EvaluateActivity extends AppCompatActivity {
 
         // Show message depending on whether the answer was correct or incorrect
         if (isCorrect) {
+            soundPlayer.playCorrectAnswerSound();
             dialogMessage.setText("Correct Answer!\n\n" + currentQuestion.getExplanation());
         } else {
+            soundPlayer.playWrongAnswerSound();
+
             dialogMessage.setText("Incorrect Answer!\nThe correct answer is " + currentQuestion.getCorrectAnswer() + ".\n\n" + currentQuestion.getExplanation());
         }
 
@@ -960,6 +972,9 @@ public class EvaluateActivity extends AppCompatActivity {
 
         // Automatically dismiss the dialog when the user taps the screen
         new Handler().postDelayed(() -> {
+
+            soundPlayer.playWoodButtonSound();
+
             dialog.dismiss();
             tapToNext.setVisibility(View.VISIBLE);  // Show the tap-to-next message
 
@@ -981,6 +996,10 @@ public class EvaluateActivity extends AppCompatActivity {
     }
 
     private void showCompletionDialog() {
+        SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(getApplicationContext());
+
+        soundPlayer.playAfterEachEvalSound();
+
         // Calculate the percentage score
         int totalQuestions = questions.size();
         double percentage = ((double) correctAnswers / totalQuestions) * 100;
@@ -1023,6 +1042,7 @@ public class EvaluateActivity extends AppCompatActivity {
 
         // Set the button click listener to close the dialog
         closeDialogButton.setOnClickListener(v -> {
+            soundPlayer.playWoodButtonSound();
             alertDialog.dismiss();
             finish();  // Finish the activity and return to the previous screen
         });

@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView splashImage;
     private Button startButton, aboutUsButton;
     private Animation fallAnimation, wiggleAnimation, bounceAnimation, fadeAnimation, scaleIdleAnimation;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         scaleIdleAnimation = AnimationUtils.loadAnimation(this, R.anim.scale_idle);
 
 
+        Intent musicServiceIntent = new Intent(this, MusicService.class);
+        startService(musicServiceIntent);
 
+
+        SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
         setupButtonListeners();
     }
 
@@ -56,8 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupButtonListeners() {
         startButton.setOnClickListener(v -> {
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
+            soundPlayer.playWoodButtonSound();
+
             startButton.clearAnimation();
             startButton.startAnimation(bounceAnimation);
+
+
+
 
             bounceAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -76,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         aboutUsButton.setOnClickListener(v -> {
+
+            SoundEffectPlayer soundPlayer = SoundEffectPlayer.getInstance(this);
+            soundPlayer.playWoodButtonSound();
+
             aboutUsButton.clearAnimation();
             aboutUsButton.startAnimation(bounceAnimation);
 
