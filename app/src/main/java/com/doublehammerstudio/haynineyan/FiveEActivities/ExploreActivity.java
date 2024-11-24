@@ -61,6 +61,11 @@ public class ExploreActivity extends AppCompatActivity {
             videoView1.setMediaController(mediaController);
 
 
+            MediaController mediaController2 = new MediaController(this);
+
+            mediaController2.setAnchorView(videoTitle2);
+            videoView2.setMediaController(mediaController2);
+
             Intent intent = getIntent();
             String value = intent.getStringExtra("topic");
 
